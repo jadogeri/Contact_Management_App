@@ -19,7 +19,7 @@ const {corsOptions} = require("./src/configs/cors")
 
 */
 
-const port = process.env.PORT || 6000; // Default to 3000 if not set in .env
+const port = process.env.PORT || 5000; // Default to 3000 if not set in .env
 //const dbUrl = process.env.DATABASE_URL;
 //const apiKey = process.env.API_KEY;
 
