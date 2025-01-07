@@ -1,11 +1,18 @@
-class User {
+import { IUser } from "../interfaces/IUser";
+class User implements IUser {
 
-    private id : string = "" ;
-    private username: string = "";
-    private email : string = "" ;
+    private id : string  ;
+    private username: string ;
+    private email : string  ;
+    private createdAt : string = "";
+    private updatedAt : string = "";
+
   
-    public constructor() {
+    public constructor(username: string, id : string, email : string) {
  
+      this.id = id;
+      this.username = username;
+      this.email = email;
     }
     public setID(id : string): void {
         this.id = id;
@@ -32,3 +39,4 @@ class User {
   }
   
   module.exports = {User}
+
