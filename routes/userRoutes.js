@@ -2,9 +2,8 @@ const express = require("express");
 const {
   
   currentUser,
-  loginUser,
 } = require("../controllers/userController/userController");
-const { registerUser } = require("../controllers/userController/index");
+const { registerUser, loginUser } = require("../controllers/userController/index");
 
 const validateToken = require("../middleware/validateTokenHandler");
 

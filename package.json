@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/jadogeri/Contact_Management_App#readme",
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -27,7 +28,9 @@
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
