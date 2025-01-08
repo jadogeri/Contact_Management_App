@@ -1,1 +1,2 @@
 https://www.mongodb.com/developer/products/atlas/mongodb-express-prisma-validation/
+https://dev.to/ghostaram/how-to-create-mongoose-models-using-typescript-7hf

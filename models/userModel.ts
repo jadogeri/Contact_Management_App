@@ -1,3 +1,4 @@
+
 import mongoose, { model, Schema, Model, Document } from 'mongoose';
 import { IUser } from "../interfaces/IUser";
 
@@ -21,3 +22,5 @@ const userSchema : Schema = new mongoose.Schema({
   });
 
 module.exports = mongoose.model<IUser>("User", userSchema);
+//module.exports = mongoose.model("User", userSchema);
+

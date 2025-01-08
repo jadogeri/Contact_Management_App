@@ -1,7 +1,10 @@
+
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express,{ Request, Response } from 'express';
 const connectDb = require("./configs/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
-const dotenv = require("dotenv").config();
 const {corsOptions} = require("./configs/cors")
 const cors = require("cors");
 
@@ -25,6 +28,4 @@ app.get('/', (req: Request, res : Response) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-
-
 
