@@ -10,7 +10,7 @@ router.post("/register", registerUser);
 
 router.post("/login", loginUser);
 
-router.post("/deactivate", deactivateUser);
+router.delete("/deactivate", deactivateUser);
 
 router.post("/reset", resetUser);
 

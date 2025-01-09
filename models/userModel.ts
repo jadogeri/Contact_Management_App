@@ -2,7 +2,7 @@
 import mongoose, { model, Schema, Model, Document } from 'mongoose';
 import { IUser } from "../interfaces/IUser";
 
-const userSchema : Schema = new mongoose.Schema({
+const userSchema  = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Please add the user name"],
@@ -21,6 +21,6 @@ const userSchema : Schema = new mongoose.Schema({
     timestamps: true,
   });
 
-module.exports = mongoose.model<IUser>("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
 //module.exports = mongoose.model("User", userSchema);
 
