@@ -13,6 +13,7 @@ import * as  jwt from "jsonwebtoken";
 
 const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
     const { email, password } = req.body;
+    console.log(email,password)
     if (!email || !password) {
       res.status(400);
       throw new Error("All fields are mandatory!");

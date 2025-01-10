@@ -4,16 +4,16 @@ const User = require("../../models/userModel");
 import { Response, Request } from 'express';
 
 /**
-*@desc Get  Contacts
+*@desc Get All Contacts
 *@route GET /api/contacts/get
 *@access public
 */
 
-const getContact = asyncHandler(async (req: Request, res : Response) => {
+const getContacts = asyncHandler(async (req: Request, res : Response) => {
 
-  res.json({ message: "add the auth token" });
+  res.json({ message: "get all contacts" });
 });
 
 
-module.exports = { getContact };
+module.exports = { getContacts };
 

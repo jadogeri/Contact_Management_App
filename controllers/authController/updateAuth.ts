@@ -5,16 +5,17 @@ import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
 
 /**
-*@desc Forgot a user
-*@route POST /api/users/logout
+*@desc Update Token Auth
+*@route PUT /api/auths/update
 *@access public
 */
 
-const forgotUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
+const updateAuth = asyncHandler(async (req: Request, res : Response) => {
 
   res.json({ message: "forgot the user" });
 });
 
-module.exports = { forgotUser };
+
+module.exports = { updateAuth };
 
 
