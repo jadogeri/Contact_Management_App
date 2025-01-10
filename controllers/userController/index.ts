@@ -4,6 +4,7 @@ const { logoutUser } = require("./logoutUser")
 const { forgotUser } = require("./forgotUser")
 const { resetUser } = require("./resetUser")
 const { deactivateUser }= require("./deactivateUser")
+const { currentUser} = require("./currentUser")
 
 
 
@@ -12,5 +13,5 @@ const { deactivateUser }= require("./deactivateUser")
 
 
 module.exports = { registerUser, loginUser, forgotUser, deactivateUser,
-                   logoutUser, resetUser
+                   logoutUser, resetUser, currentUser
 }

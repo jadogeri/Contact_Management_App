@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { registerUser, loginUser, logoutUser, resetUser, forgotUser, deactivateUser } = require("../controllers/userController/index");
+const { registerUser, loginUser, logoutUser, resetUser, forgotUser, deactivateUser, currentUser } = require("../controllers/userController/index");
 
 const validateToken = require("../middleware/validateTokenHandler");
 
@@ -19,7 +19,7 @@ router.post("/forgot", forgotUser);
 router.post("/logout", logoutUser);
 
 
-//router.get("/current", validateToken, currentUser);
+router.get("/current", validateToken, currentUser);
 
 module.exports = router;
 

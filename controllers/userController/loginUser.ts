@@ -4,7 +4,6 @@ const  { User } = require("../../models/userModel");
 import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
 import * as  jwt from "jsonwebtoken";
-import { HydratedDocument } from "mongoose";
 
 /**
 *@desc Login user
