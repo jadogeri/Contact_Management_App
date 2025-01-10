@@ -14,6 +14,7 @@ class User implements IUser {
       this.username = username;
       this.email = email;
     }
+  password?: string | undefined;
     public setID(id : string): void {
         this.id = id;
     }

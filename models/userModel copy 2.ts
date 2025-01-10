@@ -4,9 +4,7 @@ import { IUser } from "../interfaces/IUser";
 
 type UserModel = Model<IUser>
 
-//const userSchema : Schema = new Schema<IUser, UserModel>({
-const userSchema : Schema = new Schema<IUser>({
-
+const userSchema : Schema = new Schema<IUser, UserModel>({
   username: {
     type: String,
     required: [true, "Please add the user name"],
@@ -25,8 +23,6 @@ const userSchema : Schema = new Schema<IUser>({
     timestamps: true,
   });
 
-
-  const User: Model<IUser>  = mongoose.model<IUser>("User", userSchema);
-
-module.exports =  { User }
+module.exports = mongoose.model<IUser, UserModel>("User", userSchema);
+//module.exports = mongoose.model("User", userSchema);
 
