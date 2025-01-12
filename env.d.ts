@@ -7,6 +7,7 @@ declare global{
             ACCESS_TOKEN_SECRET: string;
             SALT_ROUNDS :number;
             CONNECTION_STRING : string;
+            BASE_URL : string;
         }
     }
 }

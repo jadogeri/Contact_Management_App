@@ -2,9 +2,6 @@
 import mongoose, { model, Schema, Model, Document } from 'mongoose';
 import { IUser } from "../interfaces/IUser";
 
-type UserModel = Model<IUser>
-
-//const userSchema : Schema = new Schema<IUser, UserModel>({
 const userSchema : Schema = new Schema<IUser>({
 
   username: {
@@ -28,5 +25,5 @@ const userSchema : Schema = new Schema<IUser>({
 
   const User: Model<IUser>  = mongoose.model<IUser>("User", userSchema);
 
-module.exports =  { User }
+export default User;
 

@@ -1,8 +1,9 @@
+
 const asyncHandler = require("express-async-handler");
-import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
-import { IUser } from '../../interfaces/IUser';
+import { IAuth } from '../../interfaces/IAuth';
+import Auth from '../../models/authModel';
+
 
 /**
 *@desc retrieve token Auth
@@ -10,12 +11,20 @@ import { IUser } from '../../interfaces/IUser';
 *@access public
 */
 
-const getAuth = asyncHandler(async (req: Request, res : Response) => {
+const getAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
-  res.json({ message: "get token auth" });
+  const credentials = req.body;
+  try{
+    let auth = await Auth.findOne({token : credentials.token});
+    res.json(auth);
+  }catch(e){
+    console.log(e);
+}
 });
 
 
 module.exports = { getAuth };
+
+
 
 

@@ -6,13 +6,14 @@ const validateToken = require("../middleware/validateTokenHandler");
 
 const router = express.Router();
 
-router.get("/get", getAuth);
+router.delete("/delete",validateToken, deleteAuth);
 
-router.delete("/delete", deleteAuth);
+router.post("/add",validateToken, addAuth);
 
-router.post("/add", addAuth);
+router.get("/get",validateToken, getAuth);
 
-router.put("/update", updateAuth);
+
+router.put("/update",validateToken, updateAuth);
 
 
 module.exports = router;

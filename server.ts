@@ -7,13 +7,13 @@ const connectDb = require("./configs/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
 const {corsOptions} = require("./configs/cors")
 const cors = require("cors");
-
-
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
 
 connectDb();
 const app = express();
 
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use("/api/contacts", require("./routes/contactRoutes"));
@@ -25,8 +25,12 @@ app.use(cors(corsOptions))
 
 
 app.get('/', (req: Request, res : Response) => {
-  res.send('New Orleans Food Spots Server');
+  res.send({message:"home"});
 });
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

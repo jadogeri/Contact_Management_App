@@ -1,21 +1,30 @@
 const asyncHandler = require("express-async-handler");
-import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
-import { IUser } from '../../interfaces/IUser';
+import { IAuth } from '../../interfaces/IAuth';
+import Auth from '../../models/authModel';
 
 /**
 *@desc Update Token Auth
 *@route PUT /api/auths/update
-*@access public
+*@access private
 */
 
-const updateAuth = asyncHandler(async (req: Request, res : Response) => {
+const updateAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
-  res.json({ message: "forgot the user" });
+  const auth = req.body;
+  try{
+    await Auth.updateOne({ "id": auth.id}, // Filter
+                         {$set: {"token": auth.token}}, // Update
+                         {upsert: true});
+    res.json({ message: `aupdated auth token of user id = ${auth.id}`});
+  }catch(e){
+    console.log(e);
+  }
 });
 
 
 module.exports = { updateAuth };
 
 
+
+ // add document with req.body._id if not exists 

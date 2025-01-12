@@ -1,17 +1,23 @@
 const asyncHandler = require("express-async-handler");
-import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
+import { IAuth } from '../../interfaces/IAuth';
+import Auth from '../../models/authModel';
 
 /**
 *@desc Add Auth Token
 *@route POST /api/auths/add
-*@access public
+*@access private
 */
 
-const addAuth = asyncHandler(async (req: Request, res : Response) => {
+const addAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
-  res.json({ message: "add the auth token" });
+  const auth = req.body;
+  try{
+    await Auth.create(auth);
+    res.json({ message: "add the auth token", data: JSON.stringify(auth) });
+  }catch(e){
+    console.log(e);
+}
 });
 
 

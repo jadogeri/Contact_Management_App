@@ -1,19 +1,24 @@
 const asyncHandler = require("express-async-handler");
-import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
+import { IAuth } from '../../interfaces/IAuth';
+import Auth from '../../models/authModel';
 
 /**
 *@desc Delete Auth Token
 *@route POST /api/auths/delete
-*@access public
+*@access private
 */
 
-const deleteAuth = asyncHandler(async (req: Request, res : Response) => {
+const deleteAuth  = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
-  res.json({ message: "delete the auth token" });
-});
-
+    const auth = req.body;
+    try{
+      await Auth.deleteOne({id : auth.id});
+      res.json({ message: `deleted user auth with id = ${auth.id}`});
+    }catch(e){
+      console.log(e);
+  }
+  });
 
 module.exports = { deleteAuth };
 
