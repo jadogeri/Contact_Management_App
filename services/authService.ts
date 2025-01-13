@@ -20,7 +20,7 @@ async function update(auth : IAuth) {
 }
 
 async function remove(key : string) {
-  return Auth.findByIdAndDelete({ [key] : key });
+  return Auth.findByIdAndDelete({ token : key });
 }
 
 export { getById, getByToken, create, update, remove };
