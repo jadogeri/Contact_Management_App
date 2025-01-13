@@ -4,9 +4,9 @@ import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
 import * as  jwt from "jsonwebtoken";
 import { IAuth } from "../../interfaces/IAuth";
-import api from "../../configs/axios";
 import * as userService from"../../services/userService"
 import * as authService from"../../services/authService"
+import { APIManager } from "../../entities/APIManager";
 
 import { errorBroadcaster } from "../../utils/errorBroadcaster";
 
@@ -50,32 +50,15 @@ const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)
       const authenticatedUser = await authService.getById(user._id);
 
       if(!authenticatedUser){
-        console.log("user does mot exist ")
-
-        const response = await api.post(process.env.BASE_URL+"/api/auths/add",authData,
-          {
-            headers:{
-              Authorization : `Bearer ${accessToken}`
-            }
-          }
-        )
+        const response = await APIManager.addAuth(authData, accessToken);
         console.log(response.data)
 
       }
       else{
-        console.log("user found ")
-
-        const response = await api.put(process.env.BASE_URL+"/api/auths/update",authData,
-          {
-            headers:{
-              Authorization : `Bearer ${accessToken}`
-            }
-          }
-        )
+        const response = await APIManager.updateAuth(authData,accessToken);     
         console.log(response.data)
 
       }
-
 
       }catch( e){
 

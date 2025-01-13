@@ -2,17 +2,27 @@ const asyncHandler = require("express-async-handler");
 import {hash} from "bcrypt";
 const User = require("../../models/userModel");
 import { Response, Request } from 'express';
-import { IUser } from '../../interfaces/IUser';
-
+import { IUserAuthorized } from "../../interfaces/IUserAuthorized";
+import { errorBroadcaster } from "../../utils/errorBroadcaster";
+import * as authService from "../../services/authService"
 /**
-*@desc Logouy a user
+*@desc Logout a user
 *@route POST /api/users/logout
 *@access public
 */
 
-const logoutUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
-
-  res.json({ message: "logout the user" });
+const logoutUser = asyncHandler(async (req: Request<{}, {} ,IUserAuthorized>, res : Response) => {
+  const {token} = req.body
+  if(!token){
+    errorBroadcaster(res,400,"field token is mandatory");
+} 
+const authenticatedUser = await authService.getByToken(token)
+if(!authenticatedUser){
+  res.json({ message: "Already logged out" });
+}
+//remove auth from Auth Collection
+authService.remove(token);
+res.json({ message: "logout the user" });
 });
 
 

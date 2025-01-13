@@ -16,7 +16,7 @@ router.post("/reset", resetUser);
 
 router.post("/forgot", forgotUser);
 
-router.post("/logout", logoutUser);
+router.post("/logout",validateToken, logoutUser);
 
 
 router.get("/current", validateToken, currentUser);
