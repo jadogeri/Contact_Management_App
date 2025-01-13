@@ -1,7 +1,8 @@
 const asyncHandler = require("express-async-handler");
 import { Response, Request } from 'express';
 import { IAuth } from '../../interfaces/IAuth';
-import Auth from '../../models/authModel';
+import * as authService from "../../services/authService"
+
 
 /**
 *@desc Update Token Auth
@@ -13,10 +14,8 @@ const updateAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Respons
 
   const auth = req.body;
   try{
-    await Auth.updateOne({ "id": auth.id}, // Filter
-                         {$set: {"token": auth.token}}, // Update
-                         {upsert: true});
-    res.json({ message: `aupdated auth token of user id = ${auth.id}`});
+    await authService.update(auth);
+    res.json({ message: `updated auth token of user id = ${auth.id}`});
   }catch(e){
     console.log(e);
   }
@@ -25,6 +24,3 @@ const updateAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Respons
 
 module.exports = { updateAuth };
 
-
-
- // add document with req.body._id if not exists 

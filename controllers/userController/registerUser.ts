@@ -1,8 +1,9 @@
 const asyncHandler = require("express-async-handler");
 import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
+import * as userService from "../../services/userService"
+import { errorBroadcaster } from "../../utils/errorBroadcaster";
 
 /**
 *@desc Register a user
@@ -13,36 +14,26 @@ import { IUser } from '../../interfaces/IUser';
 const registerUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
-    res.status(400);
-    throw new Error("All fields are mandatory!");
+    errorBroadcaster(res,400,"All fields are mandatory!")
   }
-  const userAvailable  = await User.findOne({ email });
+  
+  const userAvailable  = await userService.get(email as string);
   if (userAvailable) {
-    res.status(400);
-    throw new Error("User already registered!");
+    errorBroadcaster(res,400,"User already registered!");
   }
-
   //Hash password
-
-  const hashedPassword : string = await hash(password, 10);
+  const hashedPassword : string = await hash(password as string, parseInt(process.env.SALT_ROUNDS as string));
   console.log("Hashed Password: ", hashedPassword);
-  const user = await User.create({
-    username,
-    email,
-    password: hashedPassword,
-  });
+  const user = await userService.create(username!,email!,hashedPassword)  
 
   console.log(`User created ${user}`);
   if (user) {
     res.status(201).json(user);
   } else {
-    res.status(400);
-    throw new Error("User data is not valid");
+    errorBroadcaster(res,400,"User data is not valid");
   }
   res.json({ message: "Register the user" });
 });
 
-
 module.exports = { registerUser };
-
 

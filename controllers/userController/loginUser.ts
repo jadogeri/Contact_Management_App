@@ -1,13 +1,14 @@
 const asyncHandler = require("express-async-handler");
-import mongoose from "mongoose";
 import * as bcrypt from "bcrypt";
 import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
 import * as  jwt from "jsonwebtoken";
 import { IAuth } from "../../interfaces/IAuth";
 import api from "../../configs/axios";
-import User from "../../models/userModel";
-import Auth from '../../models/authModel';
+import * as userService from"../../services/userService"
+import * as authService from"../../services/authService"
+
+import { errorBroadcaster } from "../../utils/errorBroadcaster";
 
 /**
 *@desc Login user
@@ -17,24 +18,17 @@ import Auth from '../../models/authModel';
 
 const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
 
-      /**
-    #swagger.requestBody = {
-        required: true,
-        schema: { $ref: "#/components/schemas/IUser" }
-    }
-     */
   try{
     const { email, password } = req.body;
     console.log(email,password)
     if (!email || !password) {
       res.status(400);
       throw new Error("All fields are mandatory!");
-    }
-    console.log(typeof User)
-    const user = await User.findOne({ email });
 
-    //compare password with hashedpassword
- 
+    }
+    const user  = await userService.get(email as string);
+    
+    //compare password with hashedpassword 
     if (user &&  await bcrypt.compare(password,user.password as string)) {
       let payload = {
         user: {
@@ -52,7 +46,8 @@ const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)
       }
 
       try{
-      const authenticatedUser = await Auth.findOne({ id : user._id });
+        
+      const authenticatedUser = await authService.getById(user._id);
 
       if(!authenticatedUser){
         console.log("user does mot exist ")
@@ -89,9 +84,8 @@ const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)
       res.status(200).json({ accessToken });
  
     } else {
-      console.log("line different pass")
-      res.status(401);
-      throw new Error("email or password is not valid");
+      errorBroadcaster(res, 401, "email or password is not valid")
+
     }
 
   }catch(e){

@@ -5,7 +5,7 @@ declare global{
             NODE_ENV: string;
             MONGO_URI: string;
             ACCESS_TOKEN_SECRET: string;
-            SALT_ROUNDS :number;
+            SALT_ROUNDS : string;
             CONNECTION_STRING : string;
             BASE_URL : string;
         }

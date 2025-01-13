@@ -4,7 +4,7 @@
   "description": "This is express project for my contacts backend api",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.ts",
     "dev": "ts-node-dev server.ts",
     "watch": "nodemon --exec ts-node -- ./server.ts"
@@ -36,10 +36,14 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "jest": "^29.7.0",
+    "mockingoose": "^2.16.2",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.7.3"
   }
 }
