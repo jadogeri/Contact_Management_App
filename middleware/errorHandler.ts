@@ -1,5 +1,5 @@
 const { constants } = require("../constants");
-import { Request,ErrorRequestHandler,NextFunction } from "express";
+import { ErrRequest,Response,NextFunction } from "express";
 const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
   switch (statusCode) {
@@ -41,3 +41,13 @@ const errorHandler = (err, req, res, next) => {
 };
 
 module.exports = errorHandler;
+
+
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack); // Log the full error for debugging
+
+  res.status(500).json({
+    message: err.message || 'Internal Server Error',
+  });
+});
