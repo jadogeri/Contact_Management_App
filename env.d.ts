@@ -8,6 +8,7 @@ declare global{
             SALT_ROUNDS : string;
             CONNECTION_STRING : string;
             BASE_URL : string;
+            NANOID_SIZE : string;
         }
     }
 }
