@@ -3,6 +3,10 @@ import {hash} from "bcrypt";
 const User = require("../../models/userModel");
 import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
+import { IUserReset } from "../../interfaces/IUserReset";
+import * as userService from "../../services/userService"
+import { errorBroadcaster } from "../../utils/errorBroadcaster";
+import * as bcrypt from "bcrypt"
 
 /**
 *@desc Reset a user
@@ -10,7 +14,28 @@ import { IUser } from '../../interfaces/IUser';
 *@access public
 */
 
-const resetUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
+const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, res : Response) => {
+  const { email, new_password, old_password } = req.body;
+    console.log(email,new_password,old_password)
+    if (!email || !new_password ||!old_password) {
+      res.status(400);
+      throw new Error("All fields are mandatory!");
+
+    }
+        const user  = await userService.get(email as string);
+  if (!user) {
+    errorBroadcaster(res,400,`Invalid Email ${email}`);
+  }else{
+    if(!(await bcrypt.compare(old_password,user.password as string))){
+      errorBroadcaster(res,400,`Invalid password`);
+    }else{
+      const hashedPassword : string = await bcrypt.hash(new_password , parseInt(process.env.SALT_ROUNDS as string));
+      console.log("Hashed Password: ", hashedPassword);
+      await userService.update(user._id, hashedPassword)
+      res.json({ message: "updated user password" });
+    }
+
+  }
 
   res.json({ message: "logout the user" });
 });

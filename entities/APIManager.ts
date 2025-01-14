@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios"
 import api from "../configs/axios"
+import { IAuth } from "../interfaces/IAuth"
 
 export class APIManager{
 
@@ -26,8 +27,28 @@ export class APIManager{
         )
     }
 
+    static  async removeAuth(authData : IAuth, token : string) : Promise<AxiosResponse<any, any>>{
+        console.log("update auth from api manager.........................................")
+
+        return await api.delete(process.env.BASE_URL+"/api/auths/delete",
+            {
+              headers:{
+                Authorization : `Bearer ${token}`
+              },
+              data: authData
+            }
+        )
+    }
+
 
 }
 
 
-
+// axios.delete(URL, {
+//     headers: {
+//       Authorization: authorizationToken
+//     },
+//     data: {
+//       source: source
+//     }
+//   });

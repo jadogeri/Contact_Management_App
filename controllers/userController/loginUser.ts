@@ -18,7 +18,6 @@ import { errorBroadcaster } from "../../utils/errorBroadcaster";
 
 const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
 
-  try{
     const { email, password } = req.body;
     console.log(email,password)
     if (!email || !password) {
@@ -45,35 +44,24 @@ const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)
         token : accessToken
       }
 
-      try{
-        
       const authenticatedUser = await authService.getById(user._id);
 
       if(!authenticatedUser){
         const response = await APIManager.addAuth(authData, accessToken);
         console.log(response.data)
-
       }
       else{
         const response = await APIManager.updateAuth(authData,accessToken);     
         console.log(response.data)
-
       }
 
-      }catch( e){
-
-        console.log(e)
-      }
-      res.status(200).json({ accessToken });
+       res.status(200).json({ accessToken });
  
-    } else {
-      errorBroadcaster(res, 401, "email or password is not valid")
-
+    }else{
+ 
+  res.status(400).json({ message: "email or password is not valid" });
     }
 
-  }catch(e){
-    console.log(e)
-  }
   });
   
 

@@ -1,6 +1,4 @@
 const asyncHandler = require("express-async-handler");
-import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
 import { IUserAuthorized } from "../../interfaces/IUserAuthorized";
 import { errorBroadcaster } from "../../utils/errorBroadcaster";

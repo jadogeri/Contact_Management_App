@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import User from "../models/userModel";
 
 
@@ -12,17 +13,13 @@ async function create(username: string,email : string, password: string) {
     password: password
   });
 }
-/*
 
-async function update(id, data) {
-  return Lists.findOneAndUpdate({ _id: id }, data);
+async function remove(_id :  mongoose.Types.ObjectId) {
+  return User.findByIdAndDelete(_id);
 }
 
-async function remove(id :) {
-  return User.findByIdAndDelete(id);
+async function update(_id :  mongoose.Types.ObjectId, new_password : string) {
+  return User.findOneAndUpdate({ _id: _id }, {$set: {password: new_password}},{upsert: true});
 }
 
-*/
-export { get, create, //update, remove 
-
-};
+export { get, create, remove ,update };

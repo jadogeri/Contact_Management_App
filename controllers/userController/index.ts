@@ -7,11 +7,6 @@ const { deactivateUser }= require("./deactivateUser")
 const { currentUser} = require("./currentUser")
 
 
-
-
-
-
-
 module.exports = { registerUser, loginUser, forgotUser, deactivateUser,
                    logoutUser, resetUser, currentUser
 }
