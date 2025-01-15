@@ -11,7 +11,7 @@ import { errorBroadcaster } from "../../utils/errorBroadcaster";
 *@access public
 */
 
-const registerUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
+export const registerUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
     errorBroadcaster(res,400,"All fields are mandatory!")
@@ -35,5 +35,4 @@ const registerUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Resp
   res.json({ message: "Register the user" });
 });
 
-module.exports = { registerUser };
 

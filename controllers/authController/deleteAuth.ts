@@ -9,7 +9,7 @@ import Auth from '../../models/authModel';
 *@access private
 */
 
-const deleteAuth  = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
+export const deleteAuth  = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
     const auth = req.body;
     try{
@@ -20,6 +20,5 @@ const deleteAuth  = asyncHandler(async (req : Request<{},{},IAuth>, res : Respon
   }
   });
 
-module.exports = { deleteAuth };
 
 

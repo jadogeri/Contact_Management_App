@@ -1,12 +1,7 @@
-const { addAuth } = require("./addAuth");
-const { getAuth } = require("./getAuth")
-const { deleteAuth } = require("./deleteAuth")
-const { updateAuth } = require("./updateAuth")
-
-
-
-
-
+import { addAuth } from "./addAuth"
+import { getAuth } from "./getAuth"
+import { deleteAuth } from "./deleteAuth"
+import { updateAuth } from "./updateAuth"
 
 
 module.exports = { addAuth, getAuth, deleteAuth, updateAuth  }

@@ -8,15 +8,13 @@ import * as userService from"../../services/userService"
 import * as authService from"../../services/authService"
 import { APIManager } from "../../entities/APIManager";
 
-import { errorBroadcaster } from "../../utils/errorBroadcaster";
-
 /**
 *@desc Login user
 *@route POST /api/users/login
 *@access public
 */
 
-const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
+export const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
 
     const { email, password } = req.body;
     console.log(email,password)

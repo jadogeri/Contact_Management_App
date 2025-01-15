@@ -9,7 +9,7 @@ import * as authService from "../../services/authService"
 *@access public
 */
 
-const logoutUser = asyncHandler(async (req: Request<{}, {} ,IUserAuthorized>, res : Response) => {
+export const logoutUser = asyncHandler(async (req: Request<{}, {} ,IUserAuthorized>, res : Response) => {
   const {token} = req.body
   if(!token){
     errorBroadcaster(res,400,"field token is mandatory");
@@ -24,6 +24,5 @@ res.json({ message: "logout the user" });
 });
 
 
-module.exports = { logoutUser };
 
 

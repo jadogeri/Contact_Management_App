@@ -11,7 +11,7 @@ import * as bcrypt from "bcrypt"
 *@access public
 */
 
-const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, res : Response) => {
+export const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, res : Response) => {
   const { email, new_password, old_password } = req.body;
     console.log(email,new_password,old_password)
     if (!email || !new_password ||!old_password) {
@@ -38,6 +38,5 @@ const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, res : Re
 });
 
 
-module.exports = { resetUser };
 
 

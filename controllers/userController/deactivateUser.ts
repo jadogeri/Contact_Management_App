@@ -13,7 +13,7 @@ import { APIManager } from '../../entities/APIManager';
 *@access public
 */
 
-const deactivateUser = asyncHandler(async (req: Request<{}, {} ,IUserDeactivated>, res : Response) => {
+export const deactivateUser = asyncHandler(async (req: Request<{}, {} ,IUserDeactivated>, res : Response) => {
 
   const { email, password, confirm} = req.body
   if (!email || !password || confirm == undefined) {
@@ -46,6 +46,5 @@ const deactivateUser = asyncHandler(async (req: Request<{}, {} ,IUserDeactivated
 });
 
 
-module.exports = { deactivateUser };
 
 

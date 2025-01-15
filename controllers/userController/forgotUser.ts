@@ -12,7 +12,7 @@ import { nanoid } from 'nanoid';
 *@access public
 */
 
-const forgotUser = asyncHandler(async (req: Request<{}, {} ,IUserForgot>, res : Response) => {
+export const forgotUser = asyncHandler(async (req: Request<{}, {} ,IUserForgot>, res : Response) => {
 
   const { email} = req.body;
   if (!email ) {
@@ -40,5 +40,4 @@ const forgotUser = asyncHandler(async (req: Request<{}, {} ,IUserForgot>, res : 
   }
 });
 
-module.exports = { forgotUser };
 

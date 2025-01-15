@@ -1,6 +1,7 @@
 const { constants } = require("../constants");
-import { ErrRequest,Response,NextFunction } from "express";
-const errorHandler = (err, req, res, next) => {
+import { Response, Request,NextFunction } from "express";
+
+const errorHandler = (err : Error, req : Request, res : Response, next : NextFunction) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
   switch (statusCode) {
     case constants.VALIDATION_ERROR:
@@ -43,11 +44,3 @@ const errorHandler = (err, req, res, next) => {
 module.exports = errorHandler;
 
 
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack); // Log the full error for debugging
-
-  res.status(500).json({
-    message: err.message || 'Internal Server Error',
-  });
-});

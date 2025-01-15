@@ -10,7 +10,7 @@ import * as authService from "../../services/authService"
 *@access private
 */
 
-const updateAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
+ export const updateAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
   const auth = req.body;
   try{
@@ -22,5 +22,4 @@ const updateAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Respons
 });
 
 
-module.exports = { updateAuth };
 

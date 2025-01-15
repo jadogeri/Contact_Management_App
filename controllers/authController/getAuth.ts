@@ -11,7 +11,7 @@ import Auth from '../../models/authModel';
 *@access public
 */
 
-const getAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
+export const getAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
   const credentials = req.body;
   try{
@@ -23,7 +23,6 @@ const getAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) 
 });
 
 
-module.exports = { getAuth };
 
 
 

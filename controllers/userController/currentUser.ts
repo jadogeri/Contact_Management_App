@@ -17,11 +17,10 @@ interface CurrenntData extends Request{
 }
 
 
-const currentUser = asyncHandler(async (req : CurrenntData, res: Response) => {
+export const currentUser = asyncHandler(async (req : CurrenntData, res: Response) => {
   console.log(req.user)
   res.status(200).json(req.user);
 });
 
-module.exports = {  currentUser };
 
 

@@ -8,7 +8,7 @@ import * as authService from "../../services/authService"
 *@route POST /api/auths/add
 *@access private
 */
-const addAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
+export const addAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) => {
 
   const auth = req.body;
   try{
@@ -20,5 +20,4 @@ const addAuth = asyncHandler(async (req : Request<{},{},IAuth>, res : Response) 
 });
 
 
-module.exports = { addAuth };
 

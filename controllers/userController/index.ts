@@ -1,10 +1,10 @@
-const { registerUser } = require("./registerUser");
-const { loginUser } = require("./loginUser")
-const { logoutUser } = require("./logoutUser")
-const { forgotUser } = require("./forgotUser")
-const { resetUser } = require("./resetUser")
-const { deactivateUser }= require("./deactivateUser")
-const { currentUser} = require("./currentUser")
+import { registerUser }  from "./registerUser";
+import { loginUser }  from "./loginUser"
+import { logoutUser }  from "./logoutUser"
+import { forgotUser }  from "./forgotUser"
+import { resetUser }  from "./resetUser"
+import { deactivateUser } from "./deactivateUser"
+import { currentUser}  from "./currentUser"
 
 
 module.exports = { registerUser, loginUser, forgotUser, deactivateUser,
