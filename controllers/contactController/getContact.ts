@@ -9,7 +9,7 @@ import { Response, Request } from 'express';
 *@access public
 */
 
-const getContact = asyncHandler(async (req: Request, res : Response) => {
+export const getContact = asyncHandler(async (req: Request, res : Response) => {
 
   res.json({ message: "add the auth token" });
 });

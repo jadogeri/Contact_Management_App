@@ -1,10 +1,9 @@
 import * as express from "express";
-const { getAuth, deleteAuth, addAuth, updateAuth} = require("../controllers/authController/index");
+import { getAuth, deleteAuth, addAuth, updateAuth} from "../controllers/authController/index";
 
 const validateToken = require("../middleware/validateTokenHandler");
 
 const router = express.Router();
-
 router.delete("/delete",validateToken, deleteAuth);
 
 router.post("/add",validateToken, addAuth);

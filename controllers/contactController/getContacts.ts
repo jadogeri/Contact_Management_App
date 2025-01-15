@@ -9,7 +9,7 @@ import { Response, Request } from 'express';
 *@access public
 */
 
-const getContacts = asyncHandler(async (req: Request, res : Response) => {
+export const getContacts = asyncHandler(async (req: Request, res : Response) => {
 
   res.json({ message: "get all contacts" });
 });

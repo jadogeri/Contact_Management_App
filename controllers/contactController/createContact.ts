@@ -9,10 +9,11 @@ import { Response, Request } from 'express';
 *@access public
 */
 
-const createContact = asyncHandler(async (req: Request, res : Response) => {
+export const createContact = asyncHandler(async (req: Request, res : Response) => {
 
   res.json({ message: "created a contact" });
 });
+
 
 
 module.exports = { createContact };
