@@ -30,33 +30,45 @@ export const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Re
     
     //compare password with hashedpassword 
     if (user &&  await bcrypt.compare(password,user.password as string)) {
+      console.log("checking using password bcrypt if")
+
       let payload = {
         user: {
           username: user.username as string , email: user.email as string , id: user._id ,
         },
       }
+      console.log("outside if")
       
 //post fix operator   knowing value cant be undefined
       let secretKey  = process.env.ACCESS_TOKEN_SECRET! ;
-      const accessToken  =  jwt.sign( payload,secretKey,  { expiresIn: "15m" } );
+      const accessToken  =  jwt.sign( payload,secretKey as jwt.Secret,  { expiresIn: "15m" } );
       //add token and id to auth 
+      console.log("auth token =======",accessToken)
       const authData : IAuth = {
         id : user._id,
         token : accessToken
       }
 
-      const authenticatedUser = await authService.getById(user._id);
+      console.log("authdata ==== ", authData)
 
+      console.log("id====",user._id)
+      const authenticatedUser = await authService.getById(user._id);
+      console.log("authenticated user =======",authenticatedUser)
+
+      try{
       if(!authenticatedUser){
         const response = await APIManager.addAuth(authData, accessToken);
-        console.log(response.data)
+        console.log("not auth user",response.data)
       }
       else{
         const response = await APIManager.updateAuth(authData,accessToken);     
-        console.log(response.data)
+        console.log("great atuth auth user",response.data)
       }
 
        res.status(200).json({ accessToken });
+    }catch(e){
+      console.log(e)
+    }
  
     }else{
  

@@ -29,8 +29,6 @@ export const registerUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res
   console.log(`User created ${user}`);
   if (user) {
     res.status(201).json(user);
-  } else {
-    errorBroadcaster(res,400,"User data is not valid");
   }
   res.json({ message: "Register the user" });
 });

@@ -30,7 +30,7 @@ if(req){
       email : email,
       phone:phone,
       fax:fax,
-      user_id:      req?.user?.id  as any
+      user_id:  req?.user?.id  as any
     }
 
    let status = await contactService.create(contact)
