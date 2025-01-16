@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-import { JwtPayload } from "./JWTPayload";
-export interface IContactCreateRequest extends JwtPayload{
-
-  
+import { IJwtPayload } from "./IJWTPayload";
+export interface IContactCreateRequest extends IJwtPayload{
+    
   id : mongoose.Types.ObjectId  
   email: string
   name : string

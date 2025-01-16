@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { IJWTRequest } from "./interfaces/IJWTRequest";
-import { JwtPayload } from "./interfaces/JWTPayload";
+import { JwtPayload } from "./interfaces/IJWTPayload";
 
 declare global {
     namespace Express {

@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 import Contact from "../models/contactModel";
 import { IContact } from "../interfaces/IContact";
-import { JwtPayload } from "../interfaces/JWTPayload";
+import { IJwtPayload } from "../interfaces/IJWTPayload";
 async function getById(id : mongoose.Types.ObjectId) {
     return Contact.findOne({ id : id });
   }
-  async function getAll(req : JwtPayload) {
+  async function getAll(req : IJwtPayload) {
     return Contact.find({ user_id : req.user.id });
   }
 async function getByToken(token : string) {

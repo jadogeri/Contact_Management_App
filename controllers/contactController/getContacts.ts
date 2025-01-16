@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
-import { Response, Request } from 'express';
+import { Response } from 'express';
 import * as contactService from"../../services/contactService"
-import { JwtPayload } from '../../interfaces/JWTPayload';
+import { IJwtPayload } from '../../interfaces/IJWTPayload';
 
 
 /**
@@ -10,7 +10,7 @@ import { JwtPayload } from '../../interfaces/JWTPayload';
 *@access public
 */
 
-export const getContacts = asyncHandler(async (req : JwtPayload, res: Response)  =>  {
+export const getContacts = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
 
   console.log("user extracted from jwt token === ",JSON.stringify(req.user,null,3))
   if(req.user){

@@ -43,12 +43,3 @@ export class APIManager{
 
 }
 
-
-// axios.delete(URL, {
-//     headers: {
-//       Authorization: authorizationToken
-//     },
-//     data: {
-//       source: source
-//     }
-//   });
