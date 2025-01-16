@@ -27,11 +27,11 @@
     "express": "^4.21.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "mongoose": "^8.9.3",
     "nanoid": "^3.3.4",
     "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1",
-    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
@@ -39,12 +39,14 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.7",
-    "@types/node": "^22.10.5",
+    "@types/node": "^22.10.6",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "jest": "^29.7.0",
     "mockingoose": "^2.16.2",
+    "nodemon": "^3.1.9",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
 }

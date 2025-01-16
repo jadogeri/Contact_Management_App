@@ -8,6 +8,7 @@ import * as userService from"../../services/userService"
 import * as authService from"../../services/authService"
 import { APIManager } from "../../entities/APIManager";
 
+
 /**
 *@desc Login user
 *@route POST /api/users/login
@@ -15,6 +16,8 @@ import { APIManager } from "../../entities/APIManager";
 */
 
 export const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
+
+   console.log('token finally made it data from token === ')
 
     const { email, password } = req.body;
     console.log(email,password)
@@ -63,7 +66,6 @@ export const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Re
   });
   
 
-module.exports = { loginUser };
 
 
 

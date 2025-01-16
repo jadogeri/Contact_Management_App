@@ -15,5 +15,4 @@ export const getContact = asyncHandler(async (req: Request, res : Response) => {
 });
 
 
-module.exports = { getContact };
 

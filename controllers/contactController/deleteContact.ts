@@ -15,5 +15,4 @@ export const deleteContact = asyncHandler(async (req: Request, res : Response) =
 });
 
 
-module.exports = { deleteContact };
 

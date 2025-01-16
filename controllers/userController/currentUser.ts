@@ -7,19 +7,9 @@ import { Response, Request } from 'express';
 *@access private
 */
 
-interface CurrenntData extends Request{
 
-  user: {
-    email?: string,
-    id? :string,
-    username? :string
-  }
-}
-
-
-export const currentUser = asyncHandler(async (req : CurrenntData, res: Response) => {
-  console.log(req.user)
-  res.status(200).json(req.user);
+export const currentUser = asyncHandler(async (req : Request, res: Response) => {
+  res.status(200).json({"good":"yes"});
 });
 
 

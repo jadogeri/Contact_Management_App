@@ -4,14 +4,19 @@ import { getContacts, createContact, getContact, updateContact, deleteContact } 
 const validateToken = require("../middleware/validateTokenHandler");
 
 
-router.use(validateToken);
+router.get("/",validateToken, getContacts);
 
-router.route("/").get(getContacts).post(createContact);
-router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
+router.get("/:id",validateToken, getContact);
+
+router.post("/",validateToken, createContact);
+
+router.put("/:id",validateToken, updateContact);
+
+router.delete("/:id",validateToken, deleteContact);
+
+//router.delete("/",validateToken, deleteContacts);
 
 module.exports = router;
-
-
 
 
 

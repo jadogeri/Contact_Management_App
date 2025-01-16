@@ -1,7 +1,9 @@
 const asyncHandler = require("express-async-handler");
-import {hash} from "bcrypt";
-const User = require("../../models/userModel");
 import { Response, Request } from 'express';
+import { IContact } from "../../interfaces/IContact";
+import * as contactService from"../../services/contactService"
+import { IContactCreateRequest } from "../../interfaces/IContactCreateRequest";
+
 
 /**
 *@desc Add Auth Token
@@ -9,12 +11,44 @@ import { Response, Request } from 'express';
 *@access public
 */
 
-export const createContact = asyncHandler(async (req: Request, res : Response) => {
+export const createContact = asyncHandler(async (req: IContactCreateRequest, res : Response)  => {
+  try{
+  const { name, email, phone, fax } = req.body;
+if(req){
+  console.log("user data === ",name,email,phone)
 
-  res.json({ message: "created a contact" });
+ if (!name || !email || !phone) {
+    res.status(400);
+    throw new Error("All fields are mandatory !");
+  }
+  else{
+    //create new contact user
+   
+    
+    const contact : IContact = {
+      name: name,
+      email : email,
+      phone:phone,
+      fax:fax,
+      user_id:      req?.user?.id  as any
+    }
+
+   let status = await contactService.create(contact)
+   console.log(status)
+
+    res.status(201).json(contact);
+
+  }
+
+}
+
+}catch(e){
+  console.log(e)
+}
 });
 
 
 
-module.exports = { createContact };
+
+
 

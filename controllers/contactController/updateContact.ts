@@ -15,5 +15,4 @@ export const updateContact = asyncHandler(async (req: Request, res : Response) =
 });
 
 
-module.exports = { updateContact };
 
