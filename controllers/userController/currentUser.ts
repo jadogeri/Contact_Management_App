@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 import { Response, Request } from 'express';
+import { IJwtPayload } from '../../interfaces/IJWTPayload';
 
 /**
 *@desc Current user info
@@ -8,8 +9,8 @@ import { Response, Request } from 'express';
 */
 
 
-export const currentUser = asyncHandler(async (req : Request, res: Response) => {
-  res.status(200).json({"good":"yes"});
+export const currentUser = asyncHandler(async (req : IJwtPayload, res: Response) => {
+  res.status(200).json(req.user);
 });
 
 
