@@ -3,6 +3,7 @@ import { Response, Request } from 'express';
 import { IContact } from "../../interfaces/IContact";
 import * as contactService from"../../services/contactService"
 import { IContactCreateRequest } from "../../interfaces/IContactCreateRequest";
+import { errorBroadcaster } from '../../utils/errorBroadcaster';
 
 
 /**
@@ -12,7 +13,7 @@ import { IContactCreateRequest } from "../../interfaces/IContactCreateRequest";
 */
 
 export const createContact = asyncHandler(async (req: IContactCreateRequest, res : Response)  => {
-  try{
+  
   const { name, email, phone, fax } = req.body;
 if(req){
   console.log("user data === ",name,email,phone)
@@ -23,7 +24,6 @@ if(req){
   }
   else{
     //create new contact user
-   
     
     const contact : IContact = {
       name: name,
@@ -33,18 +33,26 @@ if(req){
       user_id:  req?.user?.id  as any
     }
 
-   let status = await contactService.create(contact)
-   console.log(status)
+    //check database if email is already taken
+   const registeredUser = await contactService.getByEmail(email)
+   if(registeredUser){
+    res.status(400);
+    throw new Error("Email already taken!");
+   }else{
+    await contactService.create(contact)
+    .then(()=>{
+      res.status(201).json(contact);
+    })   
+    .catch((e)=>{
+      errorBroadcaster(res,400,`Error:\n ${e}`)
 
-    res.status(201).json(contact);
-
+    }) 
+   }
   }
 
 }
 
-}catch(e){
-  console.log(e)
-}
+
 });
 
 

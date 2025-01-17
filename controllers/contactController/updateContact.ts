@@ -4,9 +4,9 @@ const User = require("../../models/userModel");
 import { Response, Request } from 'express';
 
 /**
-*@desc Update All Contacts
-*@route PUT /api/contacts/update
-*@access public
+*@desc Update  Contact
+*@route PUT /api/contacts/:id
+*@access private
 */
 
 export const updateContact = asyncHandler(async (req: Request, res : Response) => {
@@ -14,5 +14,16 @@ export const updateContact = asyncHandler(async (req: Request, res : Response) =
   res.json({ message: "get all contacts" });
 });
 
+/**
+ * 
+   const updatedContact = await Contact.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
 
+  res.status(200).json(updatedContact);
+});
+
+ */
 

@@ -16,8 +16,9 @@ const validateToken = asyncHandler(async (req : IJwtPayload, res: Response, next
     token = authHeader.split(" ")[1];
     try{
     
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as jwt.Secret) 
-    const decodedPayload = jwtDecode<IJwtPayload>(token);
+    const decoded =  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as jwt.Secret)
+
+    const decodedPayload =  jwtDecode<IJwtPayload>(token);
 
    const {user}  = decodedPayload
       console.log("user ===",user )
@@ -32,7 +33,7 @@ const validateToken = asyncHandler(async (req : IJwtPayload, res: Response, next
       throw new Error("User not authorized!");
     }
   }catch(e){
-    console.log(e)
+      res.json(e)
   }
     
   });
@@ -41,11 +42,3 @@ module.exports = validateToken;
 
 
 
-
-
-// const token = 'YOUR_JWT_TOKEN_HERE';
-// const decodedPayload = jwtDecode<JwtPayload>(token);
-
-// console.log(decodedPayload.sub); // Access the 'sub' claim
-// console.log(decodedPayload.name); // Access the 'name' claim
-// // Access other claims as needed

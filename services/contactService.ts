@@ -2,14 +2,19 @@ import mongoose from "mongoose";
 import Contact from "../models/contactModel";
 import { IContact } from "../interfaces/IContact";
 import { IJwtPayload } from "../interfaces/IJWTPayload";
+
 async function getById(id : mongoose.Types.ObjectId) {
-    return Contact.findOne({ id : id });
+    return Contact.findOne({ _id : id });
   }
   async function getAll(req : IJwtPayload) {
     return Contact.find({ user_id : req.user.id });
   }
 async function getByToken(token : string) {
   return Contact.findOne({ token : token });
+}
+
+async function getByEmail(email : string) {
+  return Contact.findOne({ email : email });
 }
 
 async function create(contact : IContact) {
@@ -26,5 +31,9 @@ async function remove(token : string) {
   return Contact.findOneAndDelete({ token : token });
 }
 
-export { getById, getByToken, create, update, remove, getAll };
+async function removeAll(req : IJwtPayload) {
+  return Contact.deleteMany({ user_id : req.user.id });
+}
+
+export { getById, getByToken, getByEmail, create, update, remove, removeAll, getAll };
 
