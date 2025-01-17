@@ -1,6 +1,5 @@
-import { JwtPayload } from "./IJWTPayload";
 
-export interface IUser extends Document {
+export interface IUser  {
     username?: string;
     email?: string;
     password? : string

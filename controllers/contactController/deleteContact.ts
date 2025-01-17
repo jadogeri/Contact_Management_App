@@ -1,5 +1,8 @@
 const asyncHandler = require("express-async-handler");
 import { Response, Request } from 'express';
+import { IJwtPayload } from "../../interfaces/IJWTPayload";
+import * as contactService from "../../services/contactService"
+import mongoose from "mongoose";
 
 /**
 *@desc Delete a contact
@@ -7,40 +10,34 @@ import { Response, Request } from 'express';
 *@access public
 */
 
-export const deleteContact = asyncHandler(async (req: Request, res : Response) => {
+export const deleteContact = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
 
-  res.json({ message: "add the auth token" });
+  const stringId =  req.params.id;
+  if(stringId.length !== 24){
+    res.status(400);
+    throw new Error("id must be 24 characters");
+  }
+  if(!mongoose.isValidObjectId(stringId)){
+    res.status(400);
+    throw new Error("id is not valid");
+  }
+  const objectId: mongoose.Types.ObjectId = new mongoose.Types.ObjectId(stringId);
+
+   await contactService.getById(objectId)
+  .then((contact)=>{
+    if(!contact){
+      res.status(200).json("contact does not exist");
+    }
+    else{
+    contactService.remove(contact._id)
+    res.status(200).json(`deleted contact with id: ${objectId}`);
+    }
+
+  })
+  .catch((e)=>{
+    res.status(400);
+    throw new Error(e);
+
+  })
 });
 
-
-
-/**
- * 
- //@desc Delete contact
-//@route DELETE /api/contacts/:id
-//@access private
-const deleteContact = asyncHandler(async (req, res) => {
-  const contact = await Contact.findById(req.params.id);
-  if (!contact) {
-    res.status(404);
-    throw new Error("Contact not found");
-  }
-  if (contact.user_id.toString() !== req.user.id) {
-    res.status(403);
-    throw new Error("User don't have permission to update other user contacts");
-  }
-  await Contact.findByIdAndRemove(req.params.id);
-  res.status(200).json(contact);
-});
-
-module.exports = {
-  getContacts,
-  createContact,
-  getContact,
-  updateContact,
-  deleteContact,
-};
-
-
-
- */

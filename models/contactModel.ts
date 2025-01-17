@@ -26,9 +26,10 @@ const contactSchema : Schema = new Schema<IContact>({
     required: false,
   },
 },
-  {
-    timestamps: true,
-  });
+  // {
+  //   timestamps: true,
+  // }
+);
 
 
   const Contact: Model<IContact>  = mongoose.model<IContact>("Contact", contactSchema);

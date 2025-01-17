@@ -21,14 +21,15 @@ async function create(contact : IContact) {
   return  Contact.create(contact);
 }
 
-async function update(contact : IContact) {
-    return Contact.updateOne({ id : contact.user_id}, // Filter
-                          {$set: {...contact }}, // Update
+async function update(id : mongoose.Types.ObjectId,contact : IContact) {
+    return Contact.findOneAndUpdate({_id : id}, // Filter
+                          {$set: {...contact}}, // Update
                           {upsert: true});
 }
 
-async function remove(token : string) {
-  return Contact.findOneAndDelete({ token : token });
+//{_id: "12"}, {$set: {protocol: "http"}}, {upsert: true}
+async function remove(id : mongoose.Types.ObjectId) {
+  return Contact.findOneAndDelete({ _id : id });
 }
 
 async function removeAll(req : IJwtPayload) {
