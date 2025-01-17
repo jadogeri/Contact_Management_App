@@ -2,6 +2,9 @@ const asyncHandler = require("express-async-handler");
 import {hash} from "bcrypt";
 const User = require("../../models/userModel");
 import { Response, Request } from 'express';
+import { IJwtPayload } from "../../interfaces/IJWTPayload";
+import * as contactService from "../../services/contactService"
+import mongoose from "mongoose";
 
 /**
 *@desc Get  Contacts
@@ -9,31 +12,37 @@ import { Response, Request } from 'express';
 *@access public
 */
 
-export const getContact = asyncHandler(async (req: Request, res : Response) => {
+export const getContact = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
 
-  res.json({ message: "add the auth token" });
+  const stringId =  req.params.id;
+  if(stringId.length !== 24){
+    res.status(400);
+    throw new Error("id must be 24 characters");
+  }
+  if(!mongoose.isValidObjectId(stringId)){
+    res.status(400);
+    throw new Error("id is not valid");
+  }
+  const objectId: mongoose.Types.ObjectId = new mongoose.Types.ObjectId(stringId);
+
+   await contactService.getById(objectId)
+  .then((contact)=>{
+    if(!contact){
+      res.status(200).json("contact does not exist");
+    }
+    res.status(200).json(contact);
+
+  })
+  .catch((e)=>{
+    res.status(400);
+    throw new Error(e);
+
+  })
+
+
 });
 
 
 
 
-/**
- //@desc Get contact
-//@route GET /api/contacts/:id
-//@access private
-const getContact = asyncHandler(async (req, res) => {
-  const contact = await Contact.findById(req.params.id);
-  if (!contact) {
-    res.status(404);
-    throw new Error("Contact not found");
-  }
 
-  if (contact.user_id !== req.user.id) {
-    res.status(403);
-    throw new Error("User unauthorized for this operation");
-  }
-
-  res.status(200).json(contact);
-});
-
- */
