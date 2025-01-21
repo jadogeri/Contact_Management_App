@@ -3,6 +3,6 @@ https://dev.to/ghostaram/how-to-create-mongoose-models-using-typescript-7hf
 
 localhost:3000/docs/
 
-https://blog.stackademic.com/how-to-create-api-documentation-fast-swagger-with-typescript-a5926acbed30
 ts-node swagger.ts   
 https://swagger-autogen.github.io/docs/swagger-2/schemas-and-definitions
+https://blog.stackademic.com/how-to-create-api-documentation-fast-swagger-with-typescript-a5926acbed30

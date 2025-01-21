@@ -11,6 +11,20 @@
       "description": ""
     }
   ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "a User"
+    },
+    {
+      "name": "Auth",
+      "description": "a auth"
+    },
+    {
+      "name": "Contact",
+      "description": "a Contact"
+    }
+  ],
   "paths": {
     "/": {
       "get": {
@@ -27,13 +41,6 @@
         "description": "",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -45,6 +52,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -53,13 +63,6 @@
       "post": {
         "description": "",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -93,10 +96,36 @@
                   },
                   "phone": {
                     "example": "any"
+                  },
+                  "fax": {
+                    "example": "any"
                   }
                 }
               }
             }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -114,13 +143,6 @@
             }
           },
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -132,14 +154,11 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           }
         }
       },
@@ -155,13 +174,6 @@
             }
           },
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -173,14 +185,34 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "phone": {
+                    "example": "any"
+                  },
+                  "fax": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -196,13 +228,6 @@
             }
           },
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -214,14 +239,11 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           }
         }
       }
@@ -281,13 +303,6 @@
         "description": "",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -304,15 +319,11 @@
     },
     "/api/users/current": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -328,20 +339,18 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/auths/delete": {
       "delete": {
         "description": "",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -362,13 +371,6 @@
         "description": "",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -388,13 +390,6 @@
         "description": "",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -413,13 +408,6 @@
       "put": {
         "description": "",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -441,6 +429,34 @@
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "IUser": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "object"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "example": "string"
+              },
+              "email": {
+                "type": "string",
+                "example": "string"
+              },
+              "password": {
+                "type": "string",
+                "example": "string"
+              }
+            }
+          }
+        }
       }
     }
   }

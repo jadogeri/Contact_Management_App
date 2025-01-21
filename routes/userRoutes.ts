@@ -8,8 +8,26 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 
+/**
+ * @swagger
+ * api/users/login:
+ *   post:
+ *     description: Get all users
+ *     responses:
+ *       200:
+ *         description: Successful response
+ */
 router.post("/login",loginUser);
 
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     description: Returns a list of users
+ *     responses:
+ *       200:
+ *         description: Successful operation
+ */
 router.delete("/deactivate", deactivateUser);
 
 router.post("/reset", resetUser);

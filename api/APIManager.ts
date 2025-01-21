@@ -22,7 +22,8 @@ export class APIManager{
             {
               headers:{
                 Authorization : `Bearer ${token}`
-              }
+              },
+              
             }
         )
     }

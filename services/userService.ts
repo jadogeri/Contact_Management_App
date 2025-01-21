@@ -2,8 +2,12 @@ import mongoose from "mongoose";
 import User from "../models/userModel";
 
 
-async function get(email : string) {
+async function getByEmail(email : string) {
   return User.findOne({ email : email });
+}
+
+async function getByUsername(username : string) {
+  return User.findOne({ username : username });
 }
 
 async function create(username: string,email : string, password: string) {
@@ -22,4 +26,4 @@ async function update(_id :  mongoose.Types.ObjectId, new_password : string) {
   return User.findOneAndUpdate({ _id: _id }, {$set: {password: new_password}},{upsert: true});
 }
 
-export { get, create, remove ,update };
+export { getByEmail, getByUsername, create, remove ,update };

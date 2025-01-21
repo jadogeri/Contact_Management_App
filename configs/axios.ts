@@ -15,7 +15,7 @@ const api : AxiosInstance =  axios.create({
     headers: headers
   
 })
-console.log(api!==null?"yes ":"no");
+console.log(api===null?"yes ":"no");
 
 export default api
 

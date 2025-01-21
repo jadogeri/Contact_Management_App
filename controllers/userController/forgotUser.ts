@@ -13,14 +13,25 @@ import { nanoid } from 'nanoid';
 */
 
 export const forgotUser = asyncHandler(async (req: Request<{}, {} ,IUserForgot>, res : Response) => {
+    /* 	#swagger.tags = ['User']
+        #swagger.description = 'Endpoint to sign in a specific user' */
 
+    /*	#swagger.parameters['obj'] = {
+            in: 'body',
+            description: 'User information.',
+            required: true,
+            schema: { $ref: "#/definitions/AddUser" }
+    } */
+
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
   const { email} = req.body;
   if (!email ) {
     res.status(400);
     throw new Error("Email is mandatory!");
-
   }
-  const user  = await userService.get(email as string);
+  const user  = await userService.getByEmail(email as string);
   if (!user) {
     errorBroadcaster(res,400,`Invalid Email ${email}`);
   }else{

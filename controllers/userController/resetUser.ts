@@ -1,3 +1,10 @@
+/**
+ * @author Joseph Adogeri
+ * @version 1.0
+ * @since 18-JAN-2025
+ *
+ */
+
 const asyncHandler = require("express-async-handler");
 import { Response, Request } from 'express';
 import { IUserReset } from "../../interfaces/IUserReset";
@@ -12,6 +19,10 @@ import * as bcrypt from "bcrypt"
 */
 
 export const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, res : Response) => {
+   /**
+  *
+  @swagger.tags = ['User']
+   */
   const { email, new_password, old_password } = req.body;
     console.log(email,new_password,old_password)
     if (!email || !new_password ||!old_password) {
@@ -19,7 +30,7 @@ export const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, r
       throw new Error("All fields are mandatory!");
 
     }
-        const user  = await userService.get(email as string);
+        const user  = await userService.getByEmail(email as string);
   if (!user) {
     errorBroadcaster(res,400,`Invalid Email ${email}`);
   }else{
@@ -33,7 +44,6 @@ export const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, r
     }
 
   }
-
   res.json({ message: "logout the user" });
 });
 

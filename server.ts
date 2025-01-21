@@ -10,10 +10,14 @@ const cors = require("cors");
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('./swagger_output.json')
 
+
+
+
 connectDb();
 const app = express();
 
 const port = process.env.PORT || 5000;
+
 
 app.use(express.json());
 app.use("/api/contacts", require("./routes/contactRoutes"));
@@ -31,7 +35,12 @@ app.get('/', (req: Request, res : Response) => {
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running on port ${port}`);
+// });
 
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, ()=> {
+    console.log(`Backend is running on http://localhost:${port}`)
+  })
+}

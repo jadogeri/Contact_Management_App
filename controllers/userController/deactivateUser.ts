@@ -5,7 +5,7 @@ import { errorBroadcaster } from "../../utils/errorBroadcaster";
 import * as userService from "../../services/userService"
 import * as authService from "../../services/authService"
 import * as bcrypt from "bcrypt"
-import { APIManager } from '../../entities/APIManager';
+import { APIManager } from '../../api/APIManager';
 
 /**
 *@desc Deactivate a user
@@ -14,6 +14,8 @@ import { APIManager } from '../../entities/APIManager';
 */
 
 export const deactivateUser = asyncHandler(async (req: Request<{}, {} ,IUserDeactivated>, res : Response) => {
+  // #swagger.tags = ['User'] // Tag this route with 'Users'
+    // #swagger.summary = 'Get all users'
 
   const { email, password, confirm} = req.body
   if (!email || !password || confirm == undefined) {
@@ -26,7 +28,7 @@ export const deactivateUser = asyncHandler(async (req: Request<{}, {} ,IUserDeac
     errorBroadcaster(res,400,"confirm must be true");
 
   }
-  const registeredUser = await userService.get(email);
+  const registeredUser = await userService.getByEmail(email);
   if(!registeredUser){
     errorBroadcaster(res,400,"Email does not exist");
 
