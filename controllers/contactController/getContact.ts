@@ -13,6 +13,12 @@ import mongoose from "mongoose";
 */
 
 export const getContact = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
+          /* #swagger.tags = ['Contact']
+             #swagger.summary = 'get a contact' 
+            #swagger.description = 'Endpoint to retrieve a contact' 
+            #swagger.security = [{
+              "apiKeyAuth": []
+    }] */
 
   const stringId =  req.params.id;
   if(stringId.length !== 24){

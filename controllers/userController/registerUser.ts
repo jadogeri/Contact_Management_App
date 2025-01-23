@@ -18,10 +18,10 @@ import { errorBroadcaster } from "../../utils/errorBroadcaster";
 *@access public
 */
 
-export const registerUser = asyncHandler(async (req: Request<{}, {} ,IUser>, res : Response) => {
+export const registerUser = asyncHandler(async (req: Request, res : Response) => {
   
 
-  const { username, email, password } = req.body;
+  const { username, email, password } : IUser = req.body;
   // #swagger.tags = ['User'] // Tag this route with 'Users'
     // #swagger.summary = 'Get all users'
   if (!username || !email || !password) {

@@ -18,12 +18,12 @@ import * as bcrypt from "bcrypt"
 *@access public
 */
 
-export const resetUser = asyncHandler(async (req: Request<{}, {} ,IUserReset>, res : Response) => {
+export const resetUser = asyncHandler(async (req: Request, res : Response) => {
    /**
   *
   @swagger.tags = ['User']
    */
-  const { email, new_password, old_password } = req.body;
+  const { email, new_password, old_password } : IUserReset = req.body;
     console.log(email,new_password,old_password)
     if (!email || !new_password ||!old_password) {
       res.status(400);

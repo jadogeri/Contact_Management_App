@@ -13,7 +13,12 @@ import mongoose from 'mongoose';
 */
 
 export const deleteContacts = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
-
+        /* #swagger.tags = ['Contact']
+            #swagger.summary = 'delete all contacts' 
+            #swagger.description = 'Endpoint to delete all contacts' 
+            #swagger.security = [{
+              "apiKeyAuth": []
+    }] */
   console.log("user extracted from jwt token === ",JSON.stringify(req.user,null,3))
   if(req.user){
     const contacts = await contactService.removeAll(req)

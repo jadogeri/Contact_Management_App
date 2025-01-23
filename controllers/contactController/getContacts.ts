@@ -11,6 +11,12 @@ import { IJwtPayload } from '../../interfaces/IJWTPayload';
 */
 
 export const getContacts = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
+          /* #swagger.tags = ['Contact']
+             #swagger.summary = 'get all contacts' 
+             #swagger.description = 'Endpoint to get all contacts' 
+             #swagger.security = [{
+              "apiKeyAuth": []
+    }] */
 
   console.log("user extracted from jwt token === ",JSON.stringify(req.user,null,3))
   if(req.user){

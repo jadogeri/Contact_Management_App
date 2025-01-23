@@ -16,6 +16,12 @@ import { IContactCreateRequest } from '../../interfaces/IContactCreateRequest';
 */
 
 export const updateContact = asyncHandler(async (req: IContactUpdateRequest, res : Response) => {
+          /* #swagger.tags = ['Contact']
+             #swagger.summary = 'update a contact' 
+            #swagger.description = 'Endpoint to update a contact' 
+            #swagger.security = [{
+              "apiKeyAuth": []
+    }] */
 try{
   const {email, name, phone, fax} = req.body
   console.log(email,name, phone,fax)

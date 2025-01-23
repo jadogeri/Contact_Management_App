@@ -13,11 +13,9 @@ import { APIManager } from '../../api/APIManager';
 *@access public
 */
 
-export const deactivateUser = asyncHandler(async (req: Request<{}, {} ,IUserDeactivated>, res : Response) => {
-  // #swagger.tags = ['User'] // Tag this route with 'Users'
-    // #swagger.summary = 'Get all users'
+export const deactivateUser = asyncHandler(async (req: Request, res : Response) => {
 
-  const { email, password, confirm} = req.body
+  const { email, password, confirm}: IUserDeactivated = req.body
   if (!email || !password || confirm == undefined) {
     console.log(email,password,confirm)
 

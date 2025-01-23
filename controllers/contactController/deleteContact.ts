@@ -11,6 +11,12 @@ import mongoose from "mongoose";
 */
 
 export const deleteContact = asyncHandler(async (req : IJwtPayload, res: Response)  =>  {
+         /* #swagger.tags = ['Contact']
+            #swagger.summary = 'delete a contact' 
+            #swagger.description = 'Endpoint to delete a contact' 
+            #swagger.security = [{
+              "apiKeyAuth": []
+    }] */
 
   const stringId =  req.params.id;
   if(stringId.length !== 24){

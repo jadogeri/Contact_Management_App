@@ -23,10 +23,11 @@ import { APIManager } from "../../api/APIManager";
 */
 
 
-export const loginUser = asyncHandler(async (req : Request<{},{},IUser>, res: Response)  => {
+export const loginUser = asyncHandler(async (req : Request, res: Response)  => {
  // #swagger.tags = ['User'] // Tag this route with 'Users'
     // #swagger.summary = 'Get all users'
-  const { email, password } = req.body;
+    
+  const { email, password } : IUser = req.body;
   console.log(email,password)
   if (!email || !password) {
     res.status(400);

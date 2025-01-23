@@ -8,7 +8,7 @@
   "servers": [
     {
       "url": "http://localhost:4000",
-      "description": ""
+      "description": "development server"
     }
   ],
   "tags": [
@@ -38,7 +38,11 @@
     },
     "/api/contacts/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Contact"
+        ],
+        "summary": "get all contacts",
+        "description": "Endpoint to get all contacts",
         "parameters": [
           {
             "name": "authorization",
@@ -58,10 +62,19 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Contact"
+        ],
+        "summary": "create a contact",
+        "description": "Enpoing to create a contact",
         "parameters": [
           {
             "name": "authorization",
@@ -82,6 +95,11 @@
             "description": "Unauthorized"
           }
         },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -107,7 +125,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Contact"
+        ],
+        "summary": "delete all contacts",
+        "description": "Endpoint to delete all contacts",
         "parameters": [
           {
             "name": "authorization",
@@ -127,43 +149,21 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/contacts/{id}": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Contact"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      },
-      "put": {
-        "description": "",
+        "summary": "get a contact",
+        "description": "Endpoint to retrieve a contact",
         "parameters": [
           {
             "name": "id",
@@ -192,32 +192,18 @@
             "description": "Unauthorized"
           }
         },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "phone": {
-                    "example": "any"
-                  },
-                  "fax": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
+        "security": [
+          {
+            "apiKeyAuth": []
           }
-        }
+        ]
       },
-      "delete": {
-        "description": "",
+      "put": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "update a contact",
+        "description": "Endpoint to update a contact",
         "parameters": [
           {
             "name": "id",
@@ -245,61 +231,177 @@
           "401": {
             "description": "Unauthorized"
           }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "phone": {
+                    "example": "any"
+                  },
+                  "fax": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
+      },
+      "delete": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "delete a contact",
+        "description": "Endpoint to delete a contact",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/users/register": {
       "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users",
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
     },
     "/api/users/login": {
       "post": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
     },
     "/api/users/deactivate": {
       "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users",
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
     "/api/users/reset": {
       "post": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
     },
     "/api/users/forgot": {
       "post": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint to sign in a specific user",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "User information.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AddUser"
+            }
           }
-        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/users/logout": {
       "post": {
+        "tags": [
+          "User"
+        ],
         "description": "",
         "parameters": [
           {
@@ -311,6 +413,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "401": {
             "description": "Unauthorized"
           }
@@ -333,9 +438,28 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/auths/delete": {
+      "delete": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
           "401": {
             "description": "Unauthorized"
           }
@@ -347,27 +471,11 @@
         ]
       }
     },
-    "/api/auths/delete": {
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
     "/api/auths/add": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -382,11 +490,19 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/auths/get": {
       "get": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -401,11 +517,19 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/api/auths/update": {
       "put": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -420,7 +544,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     }
   },
@@ -428,7 +557,11 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "in": "header",
+        "name": "Authorization",
+        "description": "Bearer token to access these api endpoints",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     },
     "schemas": {

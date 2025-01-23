@@ -1,6 +1,5 @@
 import swaggerAutogen from 'swagger-autogen';
-import mongoose from 'mongoose';
-import { IUser } from './interfaces/IUser';
+
 
 
 const doc = {
@@ -12,14 +11,19 @@ const doc = {
     servers: [
         {
             url: 'http://localhost:4000',
-            description: ''
+            description: 'development server',
+            
         },
     ],
     components: {
         securitySchemes: {
             bearerAuth: {
                 type: 'http',
+                in: 'header',
+                name: 'Authorization',
+                description: 'Bearer token to access these api endpoints',
                 scheme: 'bearer',
+                bearerFormat: 'JWT',        
             }
         },
         schemas: {  
@@ -37,10 +41,6 @@ const doc = {
         {
             "name": "User",               // Tag name
             "description": "a User"         // Tag description
-        },
-        {
-            "name": "Auth",               // Tag name
-            "description": "a auth"         // Tag description
         },
         {
             "name": "Contact",               // Tag name

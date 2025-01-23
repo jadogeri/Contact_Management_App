@@ -10,16 +10,10 @@ import * as authService from "../../services/authService"
 */
 
 
-export const logoutUser = asyncHandler(async (req: Request<{}, {} ,IUserAuthorized>, res : Response) => {
-  
-  /* 
-  ... 
-    //#swagger.tags = ['User']
-     ...
-  */
-  
-  const {token} = req.body
-  if(!token){
+export const logoutUser = asyncHandler(async (req: Request, res : Response) => {
+   
+  const {token} :IUserAuthorized = req.body
+  if(!token){ 
     errorBroadcaster(res,400,"field token is mandatory");
 } 
 const authenticatedUser = await authService.getByToken(token)
