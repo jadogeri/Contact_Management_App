@@ -13,13 +13,7 @@ import { errorBroadcaster } from '../../utils/errorBroadcaster';
 */
 
 export const createContact = asyncHandler(async (req: IContactCreateRequest, res : Response)  => {
-       /* 	#swagger.tags = ['Contact']
-            #swagger.summary = 'create a contact' 
-            #swagger.description = 'Enpoing to create a contact' 
-            #swagger.security = [{
-               "apiKeyAuth": []
-    }] */
-  
+
   const { name, email, phone, fax } = req.body;
 if(req){
   console.log("user data === ",name,email,phone)
@@ -46,8 +40,10 @@ if(req){
     throw new Error("Email already taken!");
    }else{
     await contactService.create(contact)
-    .then(()=>{
-      res.status(201).json(contact);
+    .then((newContact)=>{
+      console.log("new contact : ",newContact,typeof newContact)
+
+      res.status(201).json(newContact);
     })   
     .catch((e)=>{
       errorBroadcaster(res,400,`Error:\n ${e}`)

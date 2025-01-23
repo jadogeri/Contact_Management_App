@@ -1,13 +1,12 @@
 import {  test } from '@jest/globals';
 const request = require('supertest');
 import { fileReader } from "../utils/fileReader";
-let BASE_URL = "http://localhost:4000"
+const {BASE_URL}  = require("../constants")
 
 
 export const registerUserTest = () => {
 
   test('registers user Tesing in isolation', async () => {
-
 
     console.log(__dirname)
     let path  : string = __dirname + "\\mocks\\user.json"

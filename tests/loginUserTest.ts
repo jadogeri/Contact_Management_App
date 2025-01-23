@@ -1,6 +1,6 @@
 import {  test } from '@jest/globals';
 const request = require('supertest');
-let BASE_URL = "http://localhost:4000"
+const {BASE_URL}  = require("../constants")
 
 
 export const loginUserTest = () => {

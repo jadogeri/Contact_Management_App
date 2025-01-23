@@ -17,10 +17,6 @@
       "description": "a User"
     },
     {
-      "name": "Auth",
-      "description": "a auth"
-    },
-    {
       "name": "Contact",
       "description": "a Contact"
     }
@@ -70,11 +66,7 @@
         ]
       },
       "post": {
-        "tags": [
-          "Contact"
-        ],
-        "summary": "create a contact",
-        "description": "Enpoing to create a contact",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -95,11 +87,6 @@
             "description": "Unauthorized"
           }
         },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -324,6 +311,7 @@
         "tags": [
           "User"
         ],
+        "summary": "Get all users",
         "description": "",
         "responses": {
           "200": {
@@ -337,10 +325,6 @@
     },
     "/api/users/deactivate": {
       "delete": {
-        "tags": [
-          "User"
-        ],
-        "summary": "Get all users",
         "description": "",
         "responses": {
           "200": {
@@ -351,9 +335,6 @@
     },
     "/api/users/reset": {
       "post": {
-        "tags": [
-          "User"
-        ],
         "description": "",
         "responses": {
           "200": {
@@ -367,21 +348,7 @@
     },
     "/api/users/forgot": {
       "post": {
-        "tags": [
-          "User"
-        ],
-        "description": "Endpoint to sign in a specific user",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "User information.",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/AddUser"
-            }
-          }
-        ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"
@@ -389,19 +356,11 @@
           "400": {
             "description": "Bad Request"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/api/users/logout": {
       "post": {
-        "tags": [
-          "User"
-        ],
         "description": "",
         "parameters": [
           {
@@ -424,10 +383,29 @@
     },
     "/api/users/current": {
       "get": {
-        "tags": [
-          "User"
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
-        "description": "Endpoint to sign in a specific user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/auths/delete": {
+      "delete": {
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -444,38 +422,8 @@
         }
       }
     },
-    "/api/auths/delete": {
-      "delete": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
-      }
-    },
     "/api/auths/add": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
         "description": "",
         "parameters": [
           {
@@ -490,19 +438,11 @@
           "401": {
             "description": "Unauthorized"
           }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
+        }
       }
     },
     "/api/auths/get": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
         "description": "",
         "parameters": [
           {
@@ -517,19 +457,11 @@
           "401": {
             "description": "Unauthorized"
           }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
+        }
       }
     },
     "/api/auths/update": {
       "put": {
-        "tags": [
-          "Auth"
-        ],
         "description": "",
         "parameters": [
           {
@@ -544,12 +476,7 @@
           "401": {
             "description": "Unauthorized"
           }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
+        }
       }
     }
   },
