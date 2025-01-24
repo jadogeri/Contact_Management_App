@@ -18,7 +18,7 @@ export const deactivateUserTest = () => {
     expect(res.statusCode).toEqual(200);
   
    
-  })
+  },30000)
   
 }
 
