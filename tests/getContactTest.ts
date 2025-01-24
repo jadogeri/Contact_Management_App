@@ -8,14 +8,14 @@ export const getContactTest = () => {
 
   test('get a contact', async () => {
 
-    let initContact = localStorage.getItem("contact");   
-    let initUser = localStorage.getItem("user");      
+    let initContacts = localStorage.getItem("contacts");   
+    let initUser = localStorage.getItem("user");   
    
-
-    console.log("init contact ========================",initContact,typeof initContact)
-    const contact = JSON.parse(initContact as string)
+    console.log("init contact ========================",initContacts,typeof initContacts)
+    const contacts : any[] =  JSON.parse(initContacts as string)
     const user = JSON.parse(initUser as string)
 
+    const contact = contacts[0];
     const { _id} = contact
     const {token} = user
 
@@ -27,13 +27,10 @@ export const getContactTest = () => {
     let updatedCreds = {... contact, ...res.body}   
     console.log("updated creds ========================",updatedCreds,typeof updatedCreds)
     
-    localStorage.setItem("contact",JSON.stringify(updatedCreds, null, 2))
-
    }
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toBeDefined();
-
  
   },60000)
 

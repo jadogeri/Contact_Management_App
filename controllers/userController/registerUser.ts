@@ -11,6 +11,7 @@ import { Response, Request } from 'express';
 import { IUser } from '../../interfaces/IUser';
 import * as userService from "../../services/userService"
 import { errorBroadcaster } from "../../utils/errorBroadcaster";
+import { isValidEmail, isValidPassword, isValidUsername } from "../../utils/inputValidation";
 
 /**
 *@desc Register a user
@@ -20,13 +21,24 @@ import { errorBroadcaster } from "../../utils/errorBroadcaster";
 
 export const registerUser = asyncHandler(async (req: Request, res : Response) => {
   
-
+    
   const { username, email, password } : IUser = req.body;
   // #swagger.tags = ['User'] // Tag this route with 'Users'
     // #swagger.summary = 'Get all users'
   if (!username || !email || !password) {
     errorBroadcaster(res,400,"All fields are mandatory!")
   }
+  if(!isValidEmail(email as string)){
+    errorBroadcaster(res,400,"not a  valid email")
+
+  }
+  if(!isValidUsername(username as string)){
+    errorBroadcaster(res,400,"not a valid username")
+
+  }
+  if(!isValidPassword(password as string)){
+    errorBroadcaster(res,400,"not a valid password")
+  }  
   
   const userByEmailAvailable  = await userService.getByEmail(email as string);
   if (userByEmailAvailable) {

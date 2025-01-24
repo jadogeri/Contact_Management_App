@@ -14,6 +14,8 @@ import { IAuth } from "../../interfaces/IAuth";
 import * as userService from"../../services/userService"
 import * as authService from"../../services/authService"
 import { APIManager } from "../../api/APIManager";
+import { errorBroadcaster } from "../../utils/errorBroadcaster";
+import { isValidEmail, isValidPassword } from "../../utils/inputValidation";
 
 
 /**
@@ -32,8 +34,14 @@ export const loginUser = asyncHandler(async (req : Request, res: Response)  => {
   if (!email || !password) {
     res.status(400);
     throw new Error("All fields are mandatory!");
+  }
+  if(!isValidEmail(email as string)){
+    errorBroadcaster(res,400,"not a  valid email")
 
   }
+  if(!isValidPassword(password as string)){
+    errorBroadcaster(res,400,"not a valid password")
+  }  
   const user  = await userService.getByEmail(email as string);
     
     //compare password with hashedpassword 

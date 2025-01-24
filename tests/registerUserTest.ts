@@ -20,7 +20,7 @@ export const registerUserTest = () => {
 
    console.log("data retrieved from test == ",JSON.stringify(res.body))
    if(res.statusCode ===201){
-    let updatedCreds = {... res.body,password : mockObj.password,confirm : mockObj.confirm}   
+    let updatedCreds = {...mockObj,... res.body,password : mockObj.password}   
     localStorage.setItem("user",JSON.stringify(updatedCreds, null, 2))
 
    }

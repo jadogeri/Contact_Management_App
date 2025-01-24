@@ -11,6 +11,7 @@ import { IUserReset } from "../../interfaces/IUserReset";
 import * as userService from "../../services/userService"
 import { errorBroadcaster } from "../../utils/errorBroadcaster";
 import * as bcrypt from "bcrypt"
+import { isValidEmail, isValidPassword } from '../../utils/inputValidation';
 
 /**
 *@desc Reset a user
@@ -30,6 +31,14 @@ export const resetUser = asyncHandler(async (req: Request, res : Response) => {
       throw new Error("All fields are mandatory!");
 
     }
+    if(!isValidEmail(email as string)){
+      errorBroadcaster(res,400,"not a  valid email")
+  
+    }
+    if(!isValidPassword(new_password as string)){
+      errorBroadcaster(res,400,"not a new password")
+    }  
+
         const user  = await userService.getByEmail(email as string);
   if (!user) {
     errorBroadcaster(res,400,`Invalid Email ${email}`);

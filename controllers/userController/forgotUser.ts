@@ -5,6 +5,7 @@ import * as userService from "../../services/userService"
 import { errorBroadcaster } from "../../utils/errorBroadcaster";
 import * as bcrypt from "bcrypt"
 import { nanoid } from 'nanoid';
+import { isValidEmail } from '../../utils/inputValidation';
 
 /**
 *@desc Forgot a user
@@ -19,6 +20,11 @@ export const forgotUser = asyncHandler(async (req: Request, res : Response) => {
     res.status(400);
     throw new Error("Email is mandatory!");
   }
+  if(!isValidEmail(email as string)){
+    errorBroadcaster(res,400,"not a  valid email")
+
+  }
+
   const user  = await userService.getByEmail(email as string);
   if (!user) {
     errorBroadcaster(res,400,`Invalid Email ${email}`);

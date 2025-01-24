@@ -34,13 +34,7 @@ This is a Backend Application (Express + Node) which stores user information and
       </li>
     </ul>
     <ul>
-      <li><a href="#2-system-overview">2. System Overview</a>
-        <ul>
-          <li><a href="#21-system-objectives">2.1 System Objectives</a> </li>
-          <li><a href="#22-user-types">2.2 User Typres</a> </li>
-          <li><a href="#23-assumptions-and-constraints">2.3 Assumptions and Constraints</a> </li>
-          <li><a href="#24-system-context-diagram">2.4 System Context Diagram</a> </li>
-        </ul>
+      <li><a href="#2-api-reference">2. API Reference</a>
       </li>
     </ul>
     <ul>
@@ -105,24 +99,9 @@ The system will allow users to:
 
 ---
 
-## **2. System Overview**  
-### **2.1 System Objectives**  
-- Simplify unit conversion for end users.  
+## **2. API Reference**  
+* [Link to Documentation ](https://documenter.getpostman.com/view/40822092/2sAYQdkAQe#8e614d40-ca8d-4038-95ed-66c932ce2d5e)
 
-### **2.2 User Types**
-Unit Converter supports the following types of users.
-
-|User Type|Description|
-|-|-|
-|Casual Users|End users can access api hits statistics and make calculations.|
-
-### **2.3 Assumptions and Constraints**  
-- Users must have internet access to report online.  
-- Development will be completed by Feburary 20, 2025.
-
-### **2.4 System Context Diagram**  
-![Unit Converter Context Diagram](<designs/systemdiagram.png>)
----
 
 ## **3. System Architecture**  
 ### **3.1 High-Level Architecture**  
@@ -132,19 +111,18 @@ The system follows a **three-tier architecture**:
 3. **Data Layer**: Handles storage and retrieval of user data.
 
 ### **3.2 Technology Stack**  
-- **Programming Languages**: Python, JavaScript, HTML, CSS and SQL
+- **Programming Languages**: Typescript, NOSQL, YAML
 - **IDE**: Visual Studio Code (VSCode)
-- **Frontend Frameworks**: ReactJS 
-- **Backend Frameworks**: Flask
-- **Database**: SQLite3
-- **Hosting**: Render.com and Vercel.com
+- **Backend Frameworks**: Node and Express
+- **Database**: MongoDB
+- **Test**: Jest, MockingGoose and Supertest
+- **Hosting**: Render.com 
 - **Source Control**: Git and GitHub
 - **CI/CD**: GitHub Actions
 
 ### **3.3 Deployment Artifacts**
 - **Database**: Collection of SQL scripts that are executed on a Sqlite3 database instance.
 - **Backend Application**: build and run Flask application instance on Render.com
-- **Frontend Application**: build and run ReactJS application instance on Vercel.com
 
 ---
 
@@ -243,3 +221,6 @@ The system follows a **three-tier architecture**:
 
 * FreeCodeCamp : [Frontend Web Development: (HTML, CSS, JavaScript, TypeScript, React)](https://www.youtube.com/watch?v=MsnQ5uepIa).
 * Dipesh Malvia : [Learn Node.js & Express with Project in 2 Hours](https://www.youtube.com/watch?v=H9M02of22z4&t=140s).
+* AweSome Open Source : [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ * Readme.so : [The easiest way to create a README](https://readme.so/)
+ * Swagger :  [Swagger API Documentation](https://swagger.io/docs/)

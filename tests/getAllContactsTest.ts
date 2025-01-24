@@ -22,6 +22,7 @@ export const getAllContactsTest = () => {
 
     expect(res.statusCode).toEqual(200);
     expect(res.body).toBeDefined();
+    expect(res.body.length).toEqual(4)
 
  
   },60000)

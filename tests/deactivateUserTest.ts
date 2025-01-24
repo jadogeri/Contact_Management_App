@@ -2,7 +2,7 @@ import {  test } from '@jest/globals';
 const request = require('supertest');
 const {BASE_URL}  = require("../constants")
 
-export const deleteUserTest = () => {
+export const deactivateUserTest = () => {
 
   
   test('delete user', async () => {

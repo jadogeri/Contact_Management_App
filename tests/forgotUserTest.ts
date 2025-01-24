@@ -4,9 +4,9 @@ import { fileReader } from "../utils/fileReader";
 const {BASE_URL}  = require("../constants")
 
 
-export const deleteAllContactsTest = () => {
+export const forgotUserTest = () => {
 
-  test('delete all contacts', async () => {
+  test('forgot user password of contact', async () => {
 
     let initUser = localStorage.getItem("user");       
 
@@ -14,20 +14,19 @@ export const deleteAllContactsTest = () => {
 
     //get token from user
 
-    const {token} = user
+    const {token, email} = user
 
-    const res = await request(BASE_URL).delete(`/api/contacts/`).set('Authorization', `Bearer ${token}`)  
+    const res = await request(BASE_URL).post(`/api/users/forgot`).send({email : email}).set('Authorization', `Bearer ${token}`)  
 
    console.log("data retrieved from test == ",JSON.stringify(res.body), typeof res.body)
+   const {password} = res.body
+   let updatedUser = {...user, password : password, old_password : password }
+   localStorage.setItem("user", JSON.stringify(updatedUser, null , 2))
 
-    localStorage.removeItem("contacts")
     expect(res.statusCode).toEqual(200);
     expect(res.body).toBeDefined();
-
  
   },60000)
-
-
   
 }
 

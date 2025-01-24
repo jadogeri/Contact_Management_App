@@ -6,6 +6,7 @@ import * as userService from "../../services/userService"
 import * as authService from "../../services/authService"
 import * as bcrypt from "bcrypt"
 import { APIManager } from '../../api/APIManager';
+import { isValidEmail, isValidPassword } from '../../utils/inputValidation';
 
 /**
 *@desc Deactivate a user
@@ -20,8 +21,14 @@ export const deactivateUser = asyncHandler(async (req: Request, res : Response) 
     console.log(email,password,confirm)
 
     errorBroadcaster(res,400,"All fields are mandatory!");
+  }
+  if(!isValidEmail(email as string)){
+    errorBroadcaster(res,400,"not a  valid email")
 
   }
+  if(!isValidPassword(password as string)){
+    errorBroadcaster(res,400,"not a valid password")
+  }  
   if(confirm!== true){
     errorBroadcaster(res,400,"confirm must be true");
 
