@@ -62,9 +62,10 @@ This is a Backend Application (Express + Node + Mongoose) which stores user info
     <ul>
         <li><a href="#6-usage">6. Usage</a>
         <ul>
-            <li><a href="#61-run-locally">6.1 Run Locally</a> </li>
+            <li><a href="#61-run-application">6.1 Run Application</a> </li>
             <ul>
-              <li><a href="#611-run-server-flask-application">6.1.1 Server (Flask Application)</a> </li>
+              <li><a href="#611-run-locally">6.1.1 Run Locally</a> </li>
+              <li><a href="#612-run-docker-container">6.1.2 Run Docker Container</a> </li>
             </ul>
         </ul>
         </li>
@@ -85,7 +86,7 @@ This is a Backend Application (Express + Node + Mongoose) which stores user info
 
 ## **1. Introduction**  
 ### **1.1 Purpose**  
-This document outlines the system architecture, components, and design considerations for Unit Converter System. The goal is to provide a robust platform for individuals and businesses to calculate and convert to preferred units.
+This document outlines the system architecture, components, and design considerations for Contact Management App. The goal is to provide a template for backend developers to handle CRUD operations and authentication flow.
 
 ### **1.2 Scope**  
 The system will allow users to:  
@@ -124,7 +125,6 @@ The system follows a **three-tier architecture**:
 - **CI/CD**: GitHub Actions
 
 ### **3.3 Deployment Artifacts**
-- **Database**: Collection of SQL scripts that are executed on a Sqlite3 database instance.
 - **Backend Application**: Appllicationcontains everyting to build and run Express application instance on Render.com or build a Docker image, and run a Docker container on Render.com
 
 ---
@@ -143,19 +143,24 @@ The system follows a **three-tier architecture**:
 ---
 ## **5. Installation**  
 * [Download and install NodeJS](https://nodejs.org/en/download)
+* [Download and install Docker - Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+* [Download and install Docker - Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+* [Create MongoDB account and connection string](https://www.mongodb.com/docs/drivers/node/current/quick-start/)
+
 
 ---
 
 ## **6. Usage**  
-### **6.1 Run Locally**
+**prerequisites** :installation of NodeJS and MongoDB atlas 
+
+### **6.1 Run Application**
 
 1 Open command prompt or terminal.
 
 2 Type command git clone https://github.com/jadogeri/Contact_Management_App.git then press enter.
 
 ```bash
-  git clone https://github.com/jadogeri/Contact_Management_App.git
-```
+  git clone https://github.com/jadogeri/Contact_Management_App.git```
 
 3 Enter command cd Contact_Management_App then press enter.
 
@@ -163,19 +168,57 @@ The system follows a **three-tier architecture**:
   cd Contact_Management_App
 ```
 
-#### **6.1.1 Run Server (Express Application)**
+#### **6.1.1 Run Locally**
 
-1 Type npm install to install dependencies.
+1 Add .env file in project root directory and copy contents in .env.sample.
+
+2 Fill out connection_string with mongoDB atlas CONNECTION_STRING and create a secret phrase for ACCESS_TOKEN_SECRET.
+
+![env](assets/images/env.png)
+
+3 Type npm install to install dependencies.
 
 ```bash
   npm install
 ```
-3 Type npm run dev to run server
+
+4 Type npm run dev to run server
 
 ```bash
   npm run dev
 ```
 
+![env](assets/images/localoutput.png)
+
+#### **6.1.2 Run Docker container**
+
+1 Add Dockerfile file in project root directory and copy contents in .Dockerfile.sample.
+
+2 Fill out connection_string with mongoDB atlas CONNECTION_STRING and create a secret phrase for ACCESS_TOKEN_SECRET.
+
+![docker](assets/images/docker.png)
+
+3 Type docker build -t cma-api .in command line tobuild docker image
+
+```bash
+  docker build -t cma-api .
+```
+![dockerbuild](assets/images/dockerimage.png)
+
+3 Type docker run --name cma -d -p 4000:4000 cma-api to create and start containerimmediately.
+
+![dockerbuild](assets/images/dockerrun.png)
+
+4 Type docker stop cma to stop container.
+
+```bash
+  docker stop cma
+```
+5 Type docker start cma to start container.
+
+```bash
+  docker start cma
+```
 
 ---
 ## **7. Tests**  

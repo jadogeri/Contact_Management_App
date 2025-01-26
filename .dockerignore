@@ -2,3 +2,4 @@ node_modules
 tests
 Dockerfile
 .git
+.env

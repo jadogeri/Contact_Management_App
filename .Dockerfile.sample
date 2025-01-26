@@ -1,6 +1,6 @@
 FROM node:lts-alpine
-ENV CONNECTION_STRING=mongodb+srv://devNewOrleansUserDev:devNewOrleansPassDev@cluster0.hbglj.mongodb.net?retryWrites=true&w=majority&appName=Cluster0
-ENV ACCESS_TOKEN_SECRET=developerstring
+ENV CONNECTION_STRING=
+ENV ACCESS_TOKEN_SECRET=
 ENV PORT=4000
 ENV SALT_ROUNDS=11
 ENV NANOID_SIZE=11
