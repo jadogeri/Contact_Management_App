@@ -71,15 +71,19 @@ This is a Backend Application (Express + Node + Mongoose) which stores user info
         </li>
     </ul> 
     <ul>
-        <li><a href="#7-tests">7. Tests</a>
+        <li><a href="#7-api-testing">7. API Testing</a>
+        </li>
+    </ul> 
+    <ul>
+        <li><a href="#8-tests">8. Tests</a>
         </li>
     </ul>    
     <ul>    
-        <li><a href="#8-license">8. License</a>
+        <li><a href="#9-license">9. License</a>
         </li>
     </ul> 
     <ul> 
-        <li><a href="#9-references">9. References</a>
+        <li><a href="#10-references">10. References</a>
         </li>
     <ul>
     
@@ -90,12 +94,13 @@ This document outlines the system architecture, components, and design considera
 
 ### **1.2 Scope**  
 The system will allow users to:  
-- Submit personal property declarations online.  
-- Integrate seamlessly with the parish tax collection system for calculations and payments.  
+- Create users and add contacts.  
+- Handle authentication flow.  
+- Provide security to user data.
 
 ### **1.3 Intended Audience**  
-- End Users (Individuals and Businesses)  
 - Junior or Senior backend developers.
+- beginners learning typescript.
 
 ---
 
@@ -126,7 +131,6 @@ The system follows a **three-tier architecture**:
 
 ### **3.3 Deployment Artifacts**
 - **Backend Application**: Appllicationcontains everyting to build and run Express application instance on Render.com or build a Docker image, and run a Docker container on Render.com
-
 ---
 
 ## **4. Data Design**  
@@ -134,11 +138,8 @@ The system follows a **three-tier architecture**:
 |Entity|Description|
 |-|-|
 |USER|User account information used to authenticate users.|
-|CONTACT|A person name and contactinformation.|
-|AUTH|Saves authenticationinformation of Users.|
-
-### **4.2 Database Conceptual Schema**  
-![Unit Converter Conceptual Diagram](<designs/conceptualdiagram.png>)
+|CONTACT|A person name and contact information.|
+|AUTH|Saves authentication information of Users.|
 
 ---
 ## **5. Installation**  
@@ -147,11 +148,10 @@ The system follows a **three-tier architecture**:
 * [Download and install Docker - Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 * [Create MongoDB account and connection string](https://www.mongodb.com/docs/drivers/node/current/quick-start/)
 
-
 ---
 
 ## **6. Usage**  
-**prerequisites** :installation of NodeJS and MongoDB atlas 
+**Prerequisites** :installation of NodeJS and MongoDB atlas account
 
 ### **6.1 Run Application**
 
@@ -160,7 +160,8 @@ The system follows a **three-tier architecture**:
 2 Type command git clone https://github.com/jadogeri/Contact_Management_App.git then press enter.
 
 ```bash
-  git clone https://github.com/jadogeri/Contact_Management_App.git```
+  git clone https://github.com/jadogeri/Contact_Management_App.git
+```
 
 3 Enter command cd Contact_Management_App then press enter.
 
@@ -194,18 +195,18 @@ The system follows a **three-tier architecture**:
 
 1 Add Dockerfile file in project root directory and copy contents in .Dockerfile.sample.
 
-2 Fill out connection_string with mongoDB atlas CONNECTION_STRING and create a secret phrase for ACCESS_TOKEN_SECRET.
+2 Fill out connection string with mongoDB atlas CONNECTION_STRING and create a secret phrase for ACCESS_TOKEN_SECRET.
 
 ![docker](assets/images/docker.png)
 
-3 Type docker build -t cma-api .in command line tobuild docker image
+3 Type docker build -t cma-api . in command line to build docker image.
 
 ```bash
   docker build -t cma-api .
 ```
 ![dockerbuild](assets/images/dockerimage.png)
 
-3 Type docker run --name cma -d -p 4000:4000 cma-api to create and start containerimmediately.
+3 Type docker run --name cma -d -p 4000:4000 cma-api to create and start container immediately.
 
 ![dockerbuild](assets/images/dockerrun.png)
 
@@ -221,9 +222,9 @@ The system follows a **three-tier architecture**:
 ```
 
 ## **7. API Testing**  
-**prerequisites** :ensure container or local application is running. 
+**Prerequisites** :ensure container or local application is running. 
 
-1 open up any web browser and type http://localhost:4000/api-docs
+1 Open up any web browser and type http://localhost:4000/api-docs
 
 **Note** : use <a href="#2-api-reference">API Reference</a> docs for testing endpoints.
 
