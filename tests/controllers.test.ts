@@ -1,4 +1,3 @@
-const request = require('supertest');
 import { LocalStorage } from "node-localstorage";
 import { registerUserTest } from "./registerUserTest";
 import { loginUserTest } from "./loginUserTest";

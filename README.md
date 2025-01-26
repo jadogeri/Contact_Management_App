@@ -7,7 +7,7 @@
 ---
 
 ## Description
-This is a Backend Application (Express + Node) which stores user information and contacts.
+This is a Backend Application (Express + Node + Mongoose) which stores user information and contacts.
 
 
 ## Authors
@@ -65,7 +65,6 @@ This is a Backend Application (Express + Node) which stores user information and
             <li><a href="#61-run-locally">6.1 Run Locally</a> </li>
             <ul>
               <li><a href="#611-run-server-flask-application">6.1.1 Server (Flask Application)</a> </li>
-              <li><a href="#612-run-client-reactjs-application">6.1.2 Client (ReactJS Application)</a> </li>
             </ul>
         </ul>
         </li>
@@ -94,8 +93,8 @@ The system will allow users to:
 - Integrate seamlessly with the parish tax collection system for calculations and payments.  
 
 ### **1.3 Intended Audience**  
-- System Developers and Administrators  
 - End Users (Individuals and Businesses)  
+- Junior or Senior backend developers.
 
 ---
 
@@ -106,9 +105,11 @@ The system will allow users to:
 ## **3. System Architecture**  
 ### **3.1 High-Level Architecture**  
 The system follows a **three-tier architecture**:  
-1. **Presentation Layer**: A responsive web interface accessible on desktop devices.  
-2. **Application Layer**: Implements business logic that manages the reading and writing of user input to the **Data Layer**.
-3. **Data Layer**: Handles storage and retrieval of user data.
+1. **Presentation Layer**: This layer directly interacts with incoming HTTP requests, defines routes using Express's routing mechanism, and sends back the final response to the client.   
+2. **Application Layer**: This layer encapsulates the core business logic, performing operations like data validation, calculations, and complex data manipulation, typically called by the route handlers in the presentation layer. 
+3. **Data Layer**: This layer handles communication with the database, performing CRUD operations to retrieve and store data. 
+
+![Architecture](assets/images/architecture.png) 
 
 ### **3.2 Technology Stack**  
 - **Programming Languages**: Typescript, NOSQL, YAML
@@ -116,13 +117,15 @@ The system follows a **three-tier architecture**:
 - **Backend Frameworks**: Node and Express
 - **Database**: MongoDB
 - **Test**: Jest, MockingGoose and Supertest
+- **Container**: Docker
+- **Security**: JSON Web Token (JWT), Bcrypt and Nanoid
 - **Hosting**: Render.com 
 - **Source Control**: Git and GitHub
 - **CI/CD**: GitHub Actions
 
 ### **3.3 Deployment Artifacts**
 - **Database**: Collection of SQL scripts that are executed on a Sqlite3 database instance.
-- **Backend Application**: build and run Flask application instance on Render.com
+- **Backend Application**: Appllicationcontains everyting to build and run Express application instance on Render.com or build a Docker image, and run a Docker container on Render.com
 
 ---
 
@@ -130,18 +133,16 @@ The system follows a **three-tier architecture**:
 ### **4.1 Data Entities and Relationships**
 |Entity|Description|
 |-|-|
-|SERVICE|User account information used to authenticate users.|
-|DAILYSPAN|General information about a form that was submitted using OPOPPR.|
-|LIFESPAN|Lookup table of form types. Currently only LAT5 is supported.|
+|USER|User account information used to authenticate users.|
+|CONTACT|A person name and contactinformation.|
+|AUTH|Saves authenticationinformation of Users.|
 
 ### **4.2 Database Conceptual Schema**  
 ![Unit Converter Conceptual Diagram](<designs/conceptualdiagram.png>)
 
 ---
 ## **5. Installation**  
-* [Download and install Python](https://www.python.org/downloads/)
 * [Download and install NodeJS](https://nodejs.org/en/download)
-* [Download and install Pip](https://pip.pypa.io/en/stable/installation/)
 
 ---
 
@@ -150,55 +151,31 @@ The system follows a **three-tier architecture**:
 
 1 Open command prompt or terminal.
 
-2 Type command git clone https://github.com/jadogeri/UnitConverter.git then press enter.
+2 Type command git clone https://github.com/jadogeri/Contact_Management_App.git then press enter.
 
 ```bash
-  git clone https://github.com/jadogeri/UnitConverter.git
+  git clone https://github.com/jadogeri/Contact_Management_App.git
 ```
 
-3 Enter command cd UnitConverter then press enter.
+3 Enter command cd Contact_Management_App then press enter.
 
 ```bash
-  cd UnitConverter
+  cd Contact_Management_App
 ```
 
-#### **6.1.1 Run Server (Flask Application)**
+#### **6.1.1 Run Server (Express Application)**
 
-1 Navigate to Server direcory (Flask project) using command cd server.
+1 Type npm install to install dependencies.
 
 ```bash
-  cd server
+  npm install
 ```
-
-2 Type pip install -r requirements.txt to install dependencies.
+3 Type npm run dev to run server
 
 ```bash
-  pip install -r requirements.txt
-```
-3 Type python server.py to run server
-
-```bash
-  python server.py
+  npm run dev
 ```
 
-#### **6.1.2 Run Client (ReactJS Application)**
-
-1 Navigate to Client direcory (ReactJS project) using command cd client.
-
-```bash
-  cd client
-```
-
-2 Type npm install --force to install dependencies.
-
-```bash
-  npm install --force
-```
-3 Type npm start to run client.
-
-```bash
-  npm start
-```
 
 ---
 ## **7. Tests**  
