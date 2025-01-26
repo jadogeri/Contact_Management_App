@@ -220,8 +220,17 @@ The system follows a **three-tier architecture**:
   docker start cma
 ```
 
+## **7. API Testing**  
+**prerequisites** :ensure container or local application is running. 
+
+1 open up any web browser and type http://localhost:4000/api-docs
+
+**Note** : use <a href="#2-api-reference">API Reference</a> docs for testing endpoints.
+
+![swaggerrumnning](assets/images/runningswagger.png)
+
 ---
-## **7. Tests**  
+## **8. Tests**  
 
 1. run test command below.
 
@@ -231,13 +240,13 @@ The system follows a **three-tier architecture**:
 ![tests](assets/images/tests.png)
 
 ---
-## **8. License**  
+## **9. License**  
 
 [LICENSE](/LICENSE)
 
 ---
 
-## **9. References**
+## **10. References**
 
 * FreeCodeCamp : [Frontend Web Development: (HTML, CSS, JavaScript, TypeScript, React)](https://www.youtube.com/watch?v=MsnQ5uepIa).
 * Dipesh Malvia : [Learn Node.js & Express with Project in 2 Hours](https://www.youtube.com/watch?v=H9M02of22z4&t=140s).
