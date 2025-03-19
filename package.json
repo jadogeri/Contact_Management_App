@@ -4,6 +4,10 @@
   "description": "Node/Express application serving as backend",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc",
+    "start": "node index.ts",
+    "prod": "nodemon index.ts",
+    "dev": "ts-node-dev index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +19,15 @@
   "bugs": {
     "url": "https://github.com/jadogeri/Contact_Management_App/issues"
   },
-  "homepage": "https://github.com/jadogeri/Contact_Management_App#readme"
+  "homepage": "https://github.com/jadogeri/Contact_Management_App#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "ts-node-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
 }
