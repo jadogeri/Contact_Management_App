@@ -1,0 +1,19 @@
+{
+  "name": "contact_management_app",
+  "version": "1.0.0",
+  "description": "Node/Express application serving as backend",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadogeri/Contact_Management_App.git"
+  },
+  "author": "Joseph Adogeri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jadogeri/Contact_Management_App/issues"
+  },
+  "homepage": "https://github.com/jadogeri/Contact_Management_App#readme"
+}
