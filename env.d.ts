@@ -1,8 +1,14 @@
-// import { IBusiness } from "./src/interfaces/IBusiness";
-// import { IDetail } from "./src/interfaces/IDetail";
+import mongoose from "mongoose";
+import { IJWTRequest } from "./interfaces/IJWTRequest";
+import { JwtPayload } from "./interfaces/IJWTPayload";
+import { IUser } from "./interfaces/IUser";
+import { IUserReset } from "./interfaces/IUserReset";
+import { IUserDeactivated } from "./interfaces/IUserDeacitivated";
+import { IUserForgot } from "./interfaces/IUserForgot";
+import { IUserAuthorized } from "./interfaces/IUserAuthorized";
 
 declare global {
-  // var localStorage: LocalStorage;
+   var localStorage: LocalStorage;
     namespace Express {
       interface Request {
         params:{
@@ -11,10 +17,10 @@ declare global {
         },
         user: {
             username:string;
-            email:string
-            // id:mongoose.Types.ObjectId
+            email:string;
+            id:mongoose.Types.ObjectId
         },
-        // body: IUser | IUserReset | IUserDeactivated | IUserForgot | IUserAuthorized | IBusiness | IDetail
+        body: IUser | IUserReset | IUserDeactivated | IUserForgot | IUserAuthorized | IBusiness | IDetail
       }
     }
     namespace NodeJS {
@@ -45,5 +51,5 @@ declare global {
   export {}
 
   declare global {
-    // var localStorage: LocalStorage;
+    var localStorage: LocalStorage;
   }
