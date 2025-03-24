@@ -1,7 +1,7 @@
 import {  test } from '@jest/globals';
 const request = require('supertest');
 import { fileReader } from "../../fileReader";
-const {BASE_URL}  = require("../constants")
+const {BASE_URL}  = require("../../constants")
 
 
 export const registerUserTest = () => {

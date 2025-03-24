@@ -1,6 +1,6 @@
 import {  test } from '@jest/globals';
 const request = require('supertest');
-const {BASE_URL}  = require("../constants")
+const {BASE_URL}  = require("../../constants")
 
 
 export const currentUserTest = () => {
