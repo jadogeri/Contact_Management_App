@@ -178,16 +178,16 @@ The system follows a **three-tier architecture**:
 
 1 Open command prompt or terminal.
 
-2 Type command git clone https://github.com/jadogeri/ServerTemplate.git then press enter.
+2 Type command git clone https://github.com/jadogeri/Contact_Management_App.git then press enter.
 
 ```bash
-  git clone https://github.com/jadogeri/ServerTemplate.git
+  git clone https://github.com/jadogeri/Contact_Management_App.git
 ```
 
-3 Enter command cd ServerTemplate then press enter.
+3 Enter command cd Contact_Management_App then press enter.
 
 ```bash
-  cd ServerTemplate
+  cd Contact_Management_App
 ```
 
 #### **6.1.1 Run Locally**
