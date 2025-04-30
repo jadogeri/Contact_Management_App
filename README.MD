@@ -1,6 +1,6 @@
 # **System Design Document (SDD)**
 
-## **Server TemplateContact Management App**
+## **Contact Management App**
 
 **Version:** 1.1
 **Date:** March 22, 2025
